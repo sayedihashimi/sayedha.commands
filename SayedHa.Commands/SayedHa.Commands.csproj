@@ -19,5 +19,9 @@
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.3.4" />
+      <PackageReference Include="TextCopy" Version="1.5.2" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\SayedHa.Commands.Shared\SayedHa.Commands.Shared.csproj" />
     </ItemGroup>
 </Project>
