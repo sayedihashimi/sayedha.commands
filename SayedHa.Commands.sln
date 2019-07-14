@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SayedHa.Commands", "SayedHa.Commands\SayedHa.Commands.csproj", "{FC0937D0-557F-4B45-AA7A-8E0DB7693776}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SayedHa.Commands.Shared", "SayedHa.Commands.Shared\SayedHa.Commands.Shared.csproj", "{0D9D5FE1-37EF-49ED-9CCC-6D1D8415A33A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +15,14 @@ Global
 		{FC0937D0-557F-4B45-AA7A-8E0DB7693776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC0937D0-557F-4B45-AA7A-8E0DB7693776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC0937D0-557F-4B45-AA7A-8E0DB7693776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D9D5FE1-37EF-49ED-9CCC-6D1D8415A33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D9D5FE1-37EF-49ED-9CCC-6D1D8415A33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D9D5FE1-37EF-49ED-9CCC-6D1D8415A33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D9D5FE1-37EF-49ED-9CCC-6D1D8415A33A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.StandardHeader = $1
+		$1.IncludeInNewFiles = False
 	EndGlobalSection
 EndGlobal
