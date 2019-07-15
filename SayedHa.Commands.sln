@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SayedHa.Commands", "SayedHa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SayedHa.Commands.Shared", "SayedHa.Commands.Shared\SayedHa.Commands.Shared.csproj", "{0D9D5FE1-37EF-49ED-9CCC-6D1D8415A33A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SayedHa.Commands.Test", "SayedHa.Commands.Test\SayedHa.Commands.Test.csproj", "{46257C69-1540-4BFB-A5EA-A5BC0FB3F184}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{0D9D5FE1-37EF-49ED-9CCC-6D1D8415A33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D9D5FE1-37EF-49ED-9CCC-6D1D8415A33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D9D5FE1-37EF-49ED-9CCC-6D1D8415A33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46257C69-1540-4BFB-A5EA-A5BC0FB3F184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46257C69-1540-4BFB-A5EA-A5BC0FB3F184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46257C69-1540-4BFB-A5EA-A5BC0FB3F184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46257C69-1540-4BFB-A5EA-A5BC0FB3F184}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

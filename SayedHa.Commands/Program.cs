@@ -12,7 +12,7 @@ namespace SayedHa.Commands {
             app.HelpOption(inherited: true);
 
             app.Commands.Add(new ConvertClipboardToPlainText());
-
+            app.Commands.Add(new OpenGithubCommand());
             app.Execute(args);
 
         }

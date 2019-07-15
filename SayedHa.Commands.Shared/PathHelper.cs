@@ -21,5 +21,16 @@ namespace SayedHa.Commands.Shared {
 
             return Path.GetFullPath(pathstr);
         }
+
+        public bool ArePathsEqual(string path1, string path2) {
+            // to deal with potential trailing slash, combine path with a known end path node
+            string fullpath1 = Path.Combine(GetFullPath(path1), "end");
+            string fullpath2 = Path.Combine(GetFullPath(path2), "end");
+
+            fullpath1 = fullpath1.TrimEnd('/', '\\');
+            fullpath2 = fullpath2.TrimEnd('/', '\\');
+
+            return string.Compare(fullpath1, fullpath2, StringComparison.OrdinalIgnoreCase) == 0;
+        }
     }
 }
