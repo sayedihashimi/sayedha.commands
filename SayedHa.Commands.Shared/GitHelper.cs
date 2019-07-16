@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using LibGit2Sharp;
 
 namespace SayedHa.Commands.Shared {
     public class GitHelper {
+        protected string _gitRemoteGithubPattern = @"git@github\.com\:([^\/]*)\/(.*)\.git";
+
         public IList<(string name, string pushUrl)> GetRemotes(string repopath) {
             using var repo = new Repository(repopath);
 
@@ -34,6 +38,26 @@ namespace SayedHa.Commands.Shared {
             else {
                 return (null, null);
             }
+        }
+
+        public string GetGithubUrlForRepo(string repopath, string remoteName="origin") {
+            Debug.Assert(!string.IsNullOrEmpty(repopath));
+            Debug.Assert(!string.IsNullOrEmpty(remoteName));
+
+            var remoteInfo = GetNameAndPushUrlForRemote(repopath, remoteName);
+            if (!string.IsNullOrEmpty(remoteInfo.name) &&
+                !string.IsNullOrEmpty(remoteInfo.pushUrl)) {
+                var regex = new Regex(_gitRemoteGithubPattern, RegexOptions.Compiled);
+                var match = regex.Match(remoteInfo.pushUrl);
+
+                if (match != null && match.Groups?.Count > 0) {
+                    var accountName = match?.Groups?[1]?.Value;
+                    var repoName = match?.Groups[2]?.Value;
+                    return $"https://github.com/{accountName}/{repoName}";
+                }
+            }
+
+            return null;
         }
     }
 }

@@ -3,6 +3,7 @@ using SayedHa.Commands.Shared;
 using McMaster.Extensions.CommandLineUtils;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 
 namespace SayedHa.Commands {
     public class OpenGithubCommand : BaseCommandLineApplication {
@@ -20,26 +21,38 @@ namespace SayedHa.Commands {
                 "Directory of git repo that will be used to find the proejct URL. Default is pwd",
                 CommandOptionType.SingleValue);
 
+            var optionRemoteName = this.Option<string>(
+                "-o|--origin",
+                $"Specifies the name of the remote to look for. Default: {KnownStrings.DefaultRemoteName}",
+                CommandOptionType.SingleValue);
 
-
-            this.OnExecute(() => {
+            this.OnExecute(async () => {
                 var directory = optionDirectory.HasValue()
                     ? optionDirectory.ParsedValue
                     : Directory.GetCurrentDirectory();
 
+                var remoteName = optionRemoteName.HasValue()
+                    ? optionRemoteName.Value()
+                    : KnownStrings.DefaultRemoteName;
+
                 Console.WriteLine($"Finding proejct url in directory '{directory}'");
 
                 var gitHelper = new GitHelper();
-                var origin = gitHelper.GetNameAndPushUrlForRemote(directory, "origin");
+                var repoUrl = new GitHelper().GetGithubUrlForRepo(directory, remoteName);
 
-                var regex = new Regex(_gitRemoteGithubPattern, RegexOptions.Compiled);
-                var match = regex.Match(origin.pushUrl);
+                var commandName = "start";
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
+                    commandName = "open";
+                }
 
-                Console.WriteLine("foo");
+                ICliCommand openCommand = new CliCommand {
+                    Command =commandName,
+                    Arguments = repoUrl
+                };
 
+                _ = await openCommand.RunCommand();
 
             });
-
         }
     }
 }
