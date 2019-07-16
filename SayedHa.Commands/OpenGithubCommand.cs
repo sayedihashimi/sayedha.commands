@@ -2,10 +2,12 @@
 using SayedHa.Commands.Shared;
 using McMaster.Extensions.CommandLineUtils;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace SayedHa.Commands {
     public class OpenGithubCommand : BaseCommandLineApplication {
         protected string _githubPattern = @"origin\tgit@github.com:([a-zA-S-.]+)/([a-zA-Z-]+)\.git.*(fetch\))";
+        protected string _gitRemoteGithubPattern = @"git@github\.com\:([^\/]*)\/(.*)\.git";
         public OpenGithubCommand() : base(
             "og",
             "OpenGithub",
@@ -27,14 +29,13 @@ namespace SayedHa.Commands {
 
                 Console.WriteLine($"Finding proejct url in directory '{directory}'");
 
-                var originalPwd = Directory.GetCurrentDirectory();
+                var gitHelper = new GitHelper();
+                var origin = gitHelper.GetNameAndPushUrlForRemote(directory, "origin");
 
-                if (new PathHelper().ArePathsEqual(originalPwd, directory)) {
+                var regex = new Regex(_gitRemoteGithubPattern, RegexOptions.Compiled);
+                var match = regex.Match(origin.pushUrl);
 
-                }
-
-
-
+                Console.WriteLine("foo");
 
 
             });
