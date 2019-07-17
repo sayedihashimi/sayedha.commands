@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
 
 namespace SayedHa.Commands.Shared {
     public class PathHelper {
+        public int RecursionLimit { get; protected set; } = 300;
+
         public string GetHomeFolder() {
             var envHome = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "HOMEPATH" : "HOME";
             var home = Environment.GetEnvironmentVariable(envHome);
@@ -31,6 +35,38 @@ namespace SayedHa.Commands.Shared {
             fullpath2 = fullpath2.TrimEnd('/', '\\');
 
             return string.Compare(fullpath1, fullpath2, StringComparison.OrdinalIgnoreCase) == 0;
+        }
+
+        public string FindFolderWithNameInOrAbove(string dirnameToFind, string startingDirectory) {
+            Debug.Assert(!string.IsNullOrWhiteSpace(dirnameToFind));
+            Debug.Assert(!string.IsNullOrWhiteSpace(startingDirectory));
+
+            return FindFolderWithNameInOrAbove(dirnameToFind, startingDirectory, 0);
+        }
+
+        private string FindFolderWithNameInOrAbove(string dirNameToFind, string startingDirectory, int recursionCount) {
+            Debug.Assert(!string.IsNullOrEmpty(dirNameToFind));
+            Debug.Assert(!string.IsNullOrEmpty(startingDirectory));
+            recursionCount++;
+
+            if (recursionCount > RecursionLimit) { throw new RecursionLimitReachedException($"recursion limit ({RecursionLimit}) reached."); }
+
+            // check current directory to see if there is a folder with the name dirToFind
+            // do this in a way that works across all platforms
+            var startDir = GetFullPath(startingDirectory);
+            var dirToFind = Path.Combine(startDir, dirNameToFind);
+
+            if (Directory.Exists(dirToFind)) {
+                return dirToFind;
+            }
+
+            // if the folder has a parent rerun on that
+            string parentDir = new DirectoryInfo(startDir).Parent?.FullName;
+            if (!string.IsNullOrEmpty(parentDir)) {
+                return FindFolderWithNameInOrAbove(dirNameToFind, parentDir, recursionCount);
+            }
+
+            return null;
         }
     }
 }

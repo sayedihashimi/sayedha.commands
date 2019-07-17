@@ -38,7 +38,20 @@ namespace SayedHa.Commands {
                 Console.WriteLine($"Finding proejct url in directory '{directory}'");
 
                 var gitHelper = new GitHelper();
-                var repoUrl = new GitHelper().GetGithubUrlForRepo(directory, remoteName);
+
+                // we have to find the root of the repo folder
+                string repoRootPath = new PathHelper().FindFolderWithNameInOrAbove(KnownStrings.GitFolderName, directory);
+
+                if (string.IsNullOrEmpty(repoRootPath)) {
+                    Console.WriteLine($"Unable to locate repo root folder for '{directory}'");
+                    return;
+                }
+
+                var repoUrl = new GitHelper().GetGithubUrlForRepo(repoRootPath, remoteName);
+                if (string.IsNullOrEmpty(repoUrl)) {
+                    Console.WriteLine($"Unable to get github url for remoteName: '{remoteName}' directory: '{directory}'");
+                    return;
+                }
 
                 var commandName = "start";
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) {
