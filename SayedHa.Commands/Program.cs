@@ -13,6 +13,8 @@ namespace SayedHa.Commands {
 
             app.Commands.Add(new ConvertClipboardToPlainText());
             app.Commands.Add(new OpenGithubCommand());
+            app.Commands.Add(new RemoveSubfoldersCommand());
+
             app.Execute(args);
 
         }
