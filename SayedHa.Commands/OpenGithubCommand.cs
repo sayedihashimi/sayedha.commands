@@ -7,13 +7,11 @@ using System.Runtime.InteropServices;
 
 namespace SayedHa.Commands {
     public class OpenGithubCommand : BaseCommandLineApplication {
-        protected string _githubPattern = @"origin\tgit@github.com:([a-zA-S-.]+)/([a-zA-Z-]+)\.git.*(fetch\))";
         protected string _gitRemoteGithubPattern = @"git@github\.com\:([^\/]*)\/(.*)\.git";
         public OpenGithubCommand() : base(
             "og",
             "OpenGithub",
             "If the repo has an origin pointing to github.com the project page will be opened,") {
-            // origin\tgit@github.com:([a-zA-S-.]+)/([a-zA-Z-]+)\.git.*(fetch\))
 
             // options
             var optionDirectory = this.Option<string>(
@@ -64,7 +62,6 @@ namespace SayedHa.Commands {
                 };
 
                 _ = await openCommand.RunCommand();
-
             });
         }
     }

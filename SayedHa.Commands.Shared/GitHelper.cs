@@ -8,6 +8,7 @@ using LibGit2Sharp;
 namespace SayedHa.Commands.Shared {
     public class GitHelper {
         protected string _gitRemoteGithubPattern = @"git@github\.com\:([^\/]*)\/(.*)\.git";
+        protected string _repoUrlPattern = @"([^\/]*)\/([^\/]*)$";
 
         public IList<(string name, string pushUrl)> GetRemotes(string repopath) {
             using var repo = new Repository(repopath);
@@ -58,6 +59,27 @@ namespace SayedHa.Commands.Shared {
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// This will return the account and repo name given the repo's github url.
+        /// For the url you can pass in either the ful url, or a partial one that
+        /// contains the account name and repo name.
+        /// </summary>
+        public (string accountName, string repoName) GetAccountAndRepoNameFromUrl(string url) {
+            string accountName = null;
+            string repoName = null;
+
+            if (!string.IsNullOrEmpty(url)) {
+                var regex = new Regex(_repoUrlPattern, RegexOptions.Compiled);
+                var match = regex.Match(url.TrimEnd('/'));
+
+                if (match != null && match.Groups.Count == 3) {
+                    accountName = match.Groups[1]?.Value;
+                    repoName = match.Groups[2]?.Value;
+                }
+            }
+            return (accountName, repoName);
         }
     }
 }
