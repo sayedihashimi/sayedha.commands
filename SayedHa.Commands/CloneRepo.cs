@@ -1,10 +1,12 @@
 ﻿using System;
 using SayedHa.Commands.Shared;
 using McMaster.Extensions.CommandLineUtils;
+using System.IO;
 
 namespace SayedHa.Commands {
     public class CloneRepoCommand : BaseCommandLineApplication {
-        
+        protected string _gitSshUrlFormat = @"git@github.com:{0}/{1}.git";
+        protected string _gitHttpsUrlFormat = @"https://github.com/{0}/{1}.git";
 
         public CloneRepoCommand():base(
             "clonerepo",
@@ -55,13 +57,41 @@ namespace SayedHa.Commands {
                     ? optionRepoName.ParsedValue
                     : acctAndReopFromUrl.repoName;
 
+                var directory = optionDirectory.HasValue()
+                    ? new PathHelper().GetFullPath(optionDirectory.ParsedValue)
+                    : new PathHelper().GetFullPath(Directory.GetCurrentDirectory());
+
                 var cloneMethod = CloneMethod.ssh;
 
                 if (optionUseHttps.HasValue()) {
                     cloneMethod = CloneMethod.https;
                 }
 
+                string url = cloneMethod == CloneMethod.ssh
+                    ? string.Format(_gitSshUrlFormat, accountName, repoName)
+                    : string.Format(_gitHttpsUrlFormat, accountName, repoName);
 
+                var targetDir = Path.Combine(directory, repoName);
+                Console.WriteLine($"Cloning repo at {url} into directory {targetDir}");
+                if (Directory.Exists(targetDir)) {
+                    throw new FolderAlreadyExistsException($"Cannot clone because folder already exists at '{targetDir}'");
+                }
+
+                ICliCommand cloneCommand = new CliCommand {
+                    Command = "git",
+                    Arguments = $"clone {url}"
+                };
+
+                if (VerboseEnabled) Console.WriteLine("Cloning now");
+
+                cloneCommand.RunCommand();
+
+                if (Directory.Exists(targetDir)) {
+                    Directory.SetCurrentDirectory(targetDir);
+                }
+                else {
+                    throw new DirectoryNotFoundException($"Unknown error, folder not found at: {targetDir}");
+                }
             });
         }
 
