@@ -2,6 +2,7 @@
 using SayedHa.Commands.Shared;
 using McMaster.Extensions.CommandLineUtils;
 using System.IO;
+using SayedHa.Commands.Shared.Exceptions;
 
 namespace SayedHa.Commands {
     public class CloneRepoCommand : BaseCommandLineApplication {

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SayedHa.Commands.Shared {
+namespace SayedHa.Commands.Shared.Exceptions{
 
     [Serializable]
     public class FolderAlreadyExistsException : Exception {

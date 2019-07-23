@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+using SayedHa.Commands.Shared.Exceptions;
 
 namespace SayedHa.Commands.Shared {
     public class PathHelper {
@@ -18,7 +19,7 @@ namespace SayedHa.Commands.Shared {
             if (string.IsNullOrWhiteSpace(path)) return null;
 
             var pathstr = path.Trim();
-            if (pathstr.StartsWith("~")) {
+            if (pathstr.StartsWith("~", StringComparison.CurrentCulture)) {
                 pathstr = pathstr.Substring(1, pathstr.Length - 1);
                 pathstr = new PathHelper().GetHomeFolder() + pathstr;
             }
