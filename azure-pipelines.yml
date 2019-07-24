@@ -35,6 +35,12 @@ steps:
 
 - task: VSTest@2
   inputs:
-    testFiltercriteria: '**\\Sayedha.*test*.dll'
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\Sayedha.*test*.dll
+      !**\*TestAdapter.dll
+      !**\obj\**
+      !**\xunit.runner.visualstudio.testadapter.dll
+      !**\xunit.runner.visualstudio.dotnetcore.testadapter.dll
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
