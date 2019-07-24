@@ -78,6 +78,5 @@ namespace SayedHa.Commands.Shared
             return result;
         }
 
-        
     }
 }

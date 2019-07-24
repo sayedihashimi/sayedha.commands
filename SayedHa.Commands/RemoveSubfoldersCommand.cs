@@ -61,9 +61,7 @@ namespace SayedHa.Commands {
                     }
                 }
 
-
                 if (!wasAFolderFound) Console.WriteLine($"No folders found to delete");
-
             });
         }
     }
