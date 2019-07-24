@@ -35,5 +35,6 @@ steps:
 
 - task: VSTest@2
   inputs:
+    testFiltercriteria: '**\\Sayedha.*test*.dll'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
