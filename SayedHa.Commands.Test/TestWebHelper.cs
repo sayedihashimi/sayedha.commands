@@ -26,12 +26,9 @@ namespace SayedHa.Commands.Test {
 
             if (File.Exists(destFile)) File.Delete(destFile);
 
-            try {
-                await new WebHelper().DownloadFile(url, destFile, true);
-            }
-            catch(WebException ex) {
-                Assert.True(WebExceptionStatus.ProtocolError == ex.Status);
-            }
+            var ex = await Assert.ThrowsAsync<WebException>(() => new WebHelper().DownloadFile(url, destFile, true));
+
+            Assert.Equal(WebExceptionStatus.ProtocolError, ex.Status);
         }
     }
 }
