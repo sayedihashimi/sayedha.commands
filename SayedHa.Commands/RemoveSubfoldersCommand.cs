@@ -5,6 +5,7 @@ using System.IO;
 using McMaster.Extensions.CommandLineUtils;
 using SayedHa.Commands.Shared;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace SayedHa.Commands {
     public class RemoveSubfoldersCommand : BaseCommandLineApplication{
@@ -16,7 +17,7 @@ namespace SayedHa.Commands {
             // options
             var optionRootFolder = this.Option<string>(
                 "-r|--rootFolder",
-                "The folder that will be used as the parent for the search for folders under it by the names provided",
+                $"The folder that will be used as the parent for the search for folders under it by the names provided.  Default path is the current working directory '{Directory.GetCurrentDirectory()}'",
                 CommandOptionType.SingleOrNoValue);
 
             var optionFolderName = this.Option<string>(
@@ -24,6 +25,11 @@ namespace SayedHa.Commands {
                 "Name of folder to look for, and delete, under the root folder. You can pass this multiple times.",
                 CommandOptionType.MultipleValue);
             optionFolderName.IsRequired();
+
+            var optionExclude = this.Option<string>(
+                "-e|--exclude",
+                "Regular expression for folders to exclude from the deletion.",
+                CommandOptionType.SingleValue);
 
             var optionWhatIf = this.Option<bool>(
                 "--whatif",
@@ -37,6 +43,9 @@ namespace SayedHa.Commands {
                 var rootFolder = optionRootFolder.HasValue()
                     ? pathHelper.GetFullPath(optionRootFolder.Value())
                     : pathHelper.GetFullPath(Directory.GetCurrentDirectory());
+                var exclude = optionExclude.HasValue()
+                                ? optionExclude.ParsedValue
+                                : null;
                 var whatif = optionWhatIf.HasValue();
 
                 var folderNames = optionFolderName.Values;
@@ -46,6 +55,16 @@ namespace SayedHa.Commands {
                 var wasAFolderFound = false;
                 foreach(var folderName in folderNames) {
                     var found = Directory.GetDirectories(rootFolder, folderName, SearchOption.AllDirectories);
+
+                    if (found == null || found.Count() < 0) continue;
+
+                    // process exclude
+                    if (!string.IsNullOrEmpty(exclude)) {
+                        var temp = from d in found
+                                      where !Regex.IsMatch(d, exclude)
+                                      select d;
+                        found = temp.ToArray<string>();
+                    }
 
                     foreach(var folder in found) {
                         wasAFolderFound = true;
