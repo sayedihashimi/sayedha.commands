@@ -48,22 +48,20 @@ namespace SayedHa.Commands {
                         Console.WriteLine($"{new string(' ', 8)}Is Match: {matchResult.Success}");
                         if (matchResult.Success) {
                             Console.WriteLine($"{new string(' ', 8)}value: {matchResult.Value}");
-                        }
-                        if (matchResult.Groups != null && matchResult.Groups.Count > 0) {
-                            foreach (Group group in matchResult.Groups) {
-                                var indent = new string(' ', 8);
-                                var msg = @$"{indent}Groups
+
+                            if (matchResult.Groups != null && matchResult.Groups.Count > 0) {
+                                foreach (Group group in matchResult.Groups) {
+                                    var indent = new string(' ', 8);
+                                    var msg = @$"{indent}Groups
 {indent + indent}name:{group.Name}
 {indent + indent}value:{group.Value}";
-                                Console.WriteLine(msg);
+                                    Console.WriteLine(msg);
+                                }
                             }
                         }
-                        // matchResult.Success
-                        // matchResult.Value
                         Console.WriteLine();
                     }
                     Console.WriteLine();
-                    // var matchResult = rp.Match()
                 }
             });
         }
