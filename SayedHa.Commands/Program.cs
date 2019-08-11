@@ -16,10 +16,10 @@ namespace SayedHa.Commands {
             app.Commands.Add(new RemoveSubfoldersCommand());
             app.Commands.Add(new CloneRepoCommand());
             app.Commands.Add(new InitVsGitRepoCommand());
+            app.Commands.Add(new RegexTesterCommand());
 
             app.Execute(args);
 
         }
     }
 }
- 
