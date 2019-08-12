@@ -67,7 +67,7 @@ namespace SayedHa.Commands {
         }
 
         private RegexOptions GetRegexOptions() {
-            RegexOptions ro = RegexOptions.Compiled; // || RegexOptions.CultureInvariant || RegexOptions.IgnoreCase || RegexOptions.Multiline;
+            RegexOptions ro = RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase | RegexOptions.Multiline;
 
             return ro;
         }
