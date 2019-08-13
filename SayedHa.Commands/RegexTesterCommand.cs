@@ -10,8 +10,7 @@ using System.Diagnostics;
 
 namespace SayedHa.Commands {
     public class RegexTesterCommand : BaseCommandLineApplication {
-        private IConsole _console;
-        private IReporter _reporter;
+        private readonly IReporter _reporter;
 
         public RegexTesterCommand(IReporter reporter) : base(
             "regex",
