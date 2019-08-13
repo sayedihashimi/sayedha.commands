@@ -6,14 +6,23 @@ using McMaster.Extensions.CommandLineUtils.Conventions;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Text;
+using System.Diagnostics;
 
 namespace SayedHa.Commands {
     public class RegexTesterCommand : BaseCommandLineApplication {
-        public RegexTesterCommand() : base(
+        private IConsole _console;
+        private IReporter _reporter;
+
+        public RegexTesterCommand(IConsole console,IReporter reporter) : base(
             "regex",
             "regextester",
             "Tests your regular expressions") {
 
+            Debug.Assert(console != null);
+            Debug.Assert(reporter != null);
+
+            _console = console;
+            _reporter = reporter;
             // options
             var optionPatterns = this.Option<string>(
                 "-p|--pattern",
@@ -38,21 +47,18 @@ namespace SayedHa.Commands {
                         rp = new Regex(pattern, GetRegexOptions(), GetTimeout());
                     }
                     catch (ArgumentException) {
-                        Error.WriteLine($"Ignoring pattern '{pattern}' because it is not a valid regular expression");
-                        // Console.Error.Writ
-                        //                        ConsoleReporter consoleReporter = new ConsoleReporter()
-                        // IConsole console = PhysicalConsole.Singleton
+                        _reporter.Error($"Ignoring pattern '{pattern}' because it is not a valid regular expression");
                         continue;
                     }
 
-                    Console.WriteLine($"pattern: {rp.ToString()}");
+                    _console.WriteLine($"pattern: {rp.ToString()}");
                     foreach (var sample in samples) {
-                        Console.WriteLine($"{new string(' ', 4)}sample: {sample}");
+                        _console.WriteLine($"{new string(' ', 4)}sample: {sample}");
 
                         var matchResult = rp.Match(sample);
-                        Console.WriteLine($"{new string(' ', 8)}Is Match: {matchResult.Success}");
+                        _console.WriteLine($"{new string(' ', 8)}Is Match: {matchResult.Success}");
                         if (matchResult.Success) {
-                            Console.WriteLine($"{new string(' ', 8)}value: {matchResult.Value}");
+                            _console.WriteLine($"{new string(' ', 8)}value: {matchResult.Value}");
 
                             if (matchResult.Groups != null && matchResult.Groups.Count > 0) {
                                 foreach (Group group in matchResult.Groups) {
@@ -60,13 +66,13 @@ namespace SayedHa.Commands {
                                     var msg = @$"{indent}Groups
 {indent + indent}name:{group.Name}
 {indent + indent}value:{group.Value}";
-                                    Console.WriteLine(msg);
+                                    _console.WriteLine(msg);
                                 }
                             }
                         }
-                        Console.WriteLine();
+                        _console.WriteLine();
                     }
-                    Console.WriteLine();
+                    _console.WriteLine();
                 }
             });
         }
