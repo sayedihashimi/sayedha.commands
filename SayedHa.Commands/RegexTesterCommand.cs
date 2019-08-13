@@ -13,15 +13,13 @@ namespace SayedHa.Commands {
         private IConsole _console;
         private IReporter _reporter;
 
-        public RegexTesterCommand(IConsole console,IReporter reporter) : base(
+        public RegexTesterCommand(IReporter reporter) : base(
             "regex",
             "regextester",
             "Tests your regular expressions") {
 
-            Debug.Assert(console != null);
             Debug.Assert(reporter != null);
 
-            _console = console;
             _reporter = reporter;
             // options
             var optionPatterns = this.Option<string>(
@@ -51,14 +49,14 @@ namespace SayedHa.Commands {
                         continue;
                     }
 
-                    _console.WriteLine($"pattern: {rp.ToString()}");
+                    _reporter.Output($"pattern: {rp.ToString()}");
                     foreach (var sample in samples) {
-                        _console.WriteLine($"{new string(' ', 4)}sample: {sample}");
-
+                        _reporter.Output($"{new string(' ', 4)}sample: {sample}");
+                        
                         var matchResult = rp.Match(sample);
-                        _console.WriteLine($"{new string(' ', 8)}Is Match: {matchResult.Success}");
+                        _reporter.Output($"{new string(' ', 8)}Is Match: {matchResult.Success}");
                         if (matchResult.Success) {
-                            _console.WriteLine($"{new string(' ', 8)}value: {matchResult.Value}");
+                            _reporter.Output($"{new string(' ', 8)}value: {matchResult.Value}");
 
                             if (matchResult.Groups != null && matchResult.Groups.Count > 0) {
                                 foreach (Group group in matchResult.Groups) {
@@ -66,13 +64,13 @@ namespace SayedHa.Commands {
                                     var msg = @$"{indent}Groups
 {indent + indent}name:{group.Name}
 {indent + indent}value:{group.Value}";
-                                    _console.WriteLine(msg);
+                                    _reporter.Output(msg);
                                 }
                             }
                         }
-                        _console.WriteLine();
+                        _reporter.Output(string.Empty);
                     }
-                    _console.WriteLine();
+                    _reporter.Output(string.Empty);
                 }
             });
         }
