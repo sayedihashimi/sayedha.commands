@@ -45,7 +45,7 @@ namespace SayedHa.Commands {
                 "Use https for the clone operation",
                 CommandOptionType.NoValue);
 
-            this.OnExecute(() => {
+            this.OnExecute(async () => {
                 var repoUrl = argumentRepoUrl.Value;
 
                 var acctAndReopFromUrl = new GitHelper().GetAccountAndRepoNameFromUrl(repoUrl);
@@ -85,14 +85,22 @@ namespace SayedHa.Commands {
 
                 if (VerboseEnabled) Console.WriteLine("Cloning now");
 
-                cloneCommand.RunCommand();
+                await cloneCommand.RunCommand();
 
-                if (Directory.Exists(targetDir)) {
-                    Directory.SetCurrentDirectory(targetDir);
-                }
-                else {
-                    throw new DirectoryNotFoundException($"Unknown error, folder not found at: {targetDir}");
-                }
+                // TODO: Needs work
+                //if (Directory.Exists(targetDir)) {
+                //    Directory.SetCurrentDirectory(targetDir);
+
+                //    if (VerboseEnabled) Console.WriteLine($"attempting to change directory to '{targetDir}'");
+                //    var res = await new CliCommand {
+                //        Command = "cd",
+                //        Arguments = $"{targetDir}"
+                //    }.RunCommand();
+                //    if (VerboseEnabled) Console.WriteLine($"exit code: {res.ExitCode}");
+                //}
+                //else {
+                //    throw new DirectoryNotFoundException($"Unknown error, folder not found at: {targetDir}");
+                //}
             });
         }
 

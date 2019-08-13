@@ -53,17 +53,4 @@ namespace SayedHa.Commands {
             return _serviceProvider.GetRequiredService<TType>();
         }
     }
-
-    //public static int Main2(string[] args) {
-    //    var services = new ServiceCollection()
-    //        .AddSingleton<IMyService, MyServiceImplementation>()
-    //        .AddSingleton<IConsole>(PhysicalConsole.Singleton)
-    //        .BuildServiceProvider();
-
-    //    var app = new CommandLineApplication<Program>();
-    //    app.Conventions
-    //        .UseDefaultConventions()
-    //        .UseConstructorInjection(services);
-    //    return app.Execute(args);
-    //}
 }
