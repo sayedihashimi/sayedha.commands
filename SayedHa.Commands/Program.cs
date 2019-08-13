@@ -1,5 +1,6 @@
 ﻿using System;
 using McMaster.Extensions.CommandLineUtils;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace SayedHa.Commands {
     class Program {
@@ -19,7 +20,32 @@ namespace SayedHa.Commands {
             app.Commands.Add(new RegexTesterCommand());
 
             app.Execute(args);
+        }
+
+        protected string[] _args;
+        protected ServiceCollection services = null;
+
+        private Program(string[] args) {
+            _args = args;
+            RegisterServices();
 
         }
+
+        protected void RegisterServices() {
+            services.AddSingleton<IConsole,PhysicalConsole.Singleton>();
+        }
     }
+
+    //public static int Main2(string[] args) {
+    //    var services = new ServiceCollection()
+    //        .AddSingleton<IMyService, MyServiceImplementation>()
+    //        .AddSingleton<IConsole>(PhysicalConsole.Singleton)
+    //        .BuildServiceProvider();
+
+    //    var app = new CommandLineApplication<Program>();
+    //    app.Conventions
+    //        .UseDefaultConventions()
+    //        .UseConstructorInjection(services);
+    //    return app.Execute(args);
+    //}
 }

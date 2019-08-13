@@ -32,14 +32,19 @@ namespace SayedHa.Commands {
                 var patterns = optionPatterns.ParsedValues.ToList<string>();
                 var samples = optionSamples.ParsedValues.ToList<string>();
 
-                List<Regex> regexList = new List<Regex>();
                 foreach (var pattern in patterns) {
-                    var r = new Regex(pattern, GetRegexOptions(), GetTimeout());
-                    regexList.Add(r);
-                }
+                    Regex rp = null;
+                    try {
+                        rp = new Regex(pattern, GetRegexOptions(), GetTimeout());
+                    }
+                    catch (ArgumentException) {
+                        Error.WriteLine($"Ignoring pattern '{pattern}' because it is not a valid regular expression");
+                        // Console.Error.Writ
+                        //                        ConsoleReporter consoleReporter = new ConsoleReporter()
+                        // IConsole console = PhysicalConsole.Singleton
+                        continue;
+                    }
 
-                // TODO: Probably can get away with getting rid of regexList
-                foreach (var rp in regexList) {
                     Console.WriteLine($"pattern: {rp.ToString()}");
                     foreach (var sample in samples) {
                         Console.WriteLine($"{new string(' ', 4)}sample: {sample}");
