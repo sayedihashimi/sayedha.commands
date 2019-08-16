@@ -6,7 +6,7 @@ init:
 build:
   project: SayedHa.Commands.sln
   publish_core_console: true
-  verbosity: detailed
+  verbosity: normal
 notifications:
 - provider: Email
   to:
