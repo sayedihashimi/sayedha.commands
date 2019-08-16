@@ -27,6 +27,9 @@ build:
 after_build:
   - dotnet pack SayedHa.Commands/SayedHa.Commands.csproj
 
+artifacts:
+- path: '**\nupkg\*.nupkg'
+
 notifications:
 - provider: Email
   to:
