@@ -7,7 +7,7 @@ using SayedHa.Commands.Shared.Exceptions;
 
 namespace SayedHa.Commands.Shared {
     public class PathHelper {
-        public int RecursionLimit { get; protected set; } = 300;
+        public int RecursionLimit { get; protected set; } = 1000;
 
         public string GetHomeFolder() {
             var envHome = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "HOMEPATH" : "HOME";
