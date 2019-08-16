@@ -1,12 +1,18 @@
 version: 1.0.{build}
 image: Visual Studio 2019 Preview
 configuration: Release
+
 init:
 - pwsh: if(test-path -LiteralPath ./ci.build.init.ps1){. ./ci.build.init.ps1}
+
+before_build:
+  - dotnet restore
+
 build:
   project: SayedHa.Commands.sln
   publish_core_console: true
   verbosity: normal
+
 notifications:
 - provider: Email
   to:
