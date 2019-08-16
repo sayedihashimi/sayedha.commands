@@ -5,6 +5,16 @@ configuration: Release
 init:
 - pwsh: if(test-path -LiteralPath ./ci.build.init.ps1){. ./ci.build.init.ps1}
 
+install:
+   # .NET Core SDK binaries
+   - ps: $urlCurrent = "https://download.visualstudio.microsoft.com/download/pr/701abc79-0ceb-406c-aa4b-5e429c665448/05424ebe3bdb06688b910664fbff0671/dotnet-sdk-3.0.100-preview8-013656-win-x64.zip"
+   - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetsdk"
+   - ps: mkdir $env:DOTNET_INSTALL_DIR -Force | Out-Null
+   - ps: $tempFileCurrent = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), [System.IO.Path]::GetRandomFileName())
+   - ps: (New-Object System.Net.WebClient).DownloadFile($urlCurrent, $tempFileCurrent)
+   - ps: Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::ExtractToDirectory($tempFileCurrent, $env:DOTNET_INSTALL_DIR)
+   - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
+
 before_build:
   - dotnet restore
 
