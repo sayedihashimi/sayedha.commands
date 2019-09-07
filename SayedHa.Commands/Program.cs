@@ -34,11 +34,8 @@ namespace SayedHa.Commands {
             app.Commands.Add(new RemoveSubfoldersCommand());
             app.Commands.Add(new CloneRepoCommand());
             app.Commands.Add(new InitVsGitRepoCommand());
-            app.Commands.Add(new RegexTesterCommand(
-                GetFromServices<IReporter>()));
-                //_serviceProvider.GetRequiredService<IConsole>(),
-                //_serviceProvider.GetRequiredService<IReporter>()));
-
+            app.Commands.Add(new RegexTesterCommand(GetFromServices<IReporter>()));
+            app.Commands.Add(new ManageSdksCommand(GetFromServices<IReporter>()));
             app.Execute(_args);
         }
 
