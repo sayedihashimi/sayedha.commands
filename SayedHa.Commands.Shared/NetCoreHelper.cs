@@ -12,12 +12,11 @@ namespace SayedHa.Commands.Shared {
             string sdksInstalledStr = await GetSdksInstalledString();
             if (string.IsNullOrEmpty(sdksInstalledStr)) { return null; }
 
-            // process each line of the output at a time
-            var sdksInstalledLines = sdksInstalledStr.Split('\n');
             List<SdkInfo> sdksInstalled = new List<SdkInfo>();
 
+            // process each line of the output at a time
             var sdkRegex = new Regex(Strings.GetSdksInstalledRegex,RegexOptions.Compiled);
-            foreach(var line in sdksInstalledLines) {
+            foreach(var line in sdksInstalledStr.Split('\n')) {
                 var result = sdkRegex.Match(line);
                 if (result.Success) {
                     string version = result.Groups?[1]?.Value;
@@ -57,15 +56,5 @@ namespace SayedHa.Commands.Shared {
 
             return commandResult.StandardOutput;
         }
-    }
-
-
-    public interface ISdkInfo {
-        string Version { get; set; }
-        string InstallPath { get; set; }
-    }
-    public class SdkInfo : ISdkInfo {
-        public string Version { get; set; }
-        public string InstallPath { get; set; }
     }
 }

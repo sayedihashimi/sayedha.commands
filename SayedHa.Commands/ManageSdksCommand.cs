@@ -33,6 +33,7 @@ namespace SayedHa.Commands {
                 var nchelper = new NetCoreHelper();
                 var sdksInstalled = await nchelper.GetSdksInstalled();
 
+                // TODO: This fails if there is more than one install of the same version
                 var sdksMap = new Dictionary<string, ISdkInfo>();
                 foreach(var sdk in sdksInstalled) {
                     sdksMap.Add(sdk.Version, sdk);
@@ -40,9 +41,9 @@ namespace SayedHa.Commands {
 
                 foreach(var verToDelete in sdkVersionsToDelete) {
                     ISdkInfo todelete;
-                    sdksMap.TryGetValue(verToDelete, out todelete);
 
-                    if (string.IsNullOrEmpty(todelete?.InstallPath)) {
+                    if (!(sdksMap.TryGetValue(verToDelete, out todelete)) ||
+                        string.IsNullOrEmpty(todelete?.InstallPath)) {
                         reporter.Warn($"No installed version found for '{verToDelete}'");
                         continue;
                     }
