@@ -27,10 +27,5 @@ build:
 after_build:
   - dotnet pack SayedHa.Commands/SayedHa.Commands.csproj
 
-notifications:
-- provider: Email
-  to:
-  - sayed.hashimi@gmail.com
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: false
+artifacts:
+ - path: '**\nupkg\*.nupkg'
