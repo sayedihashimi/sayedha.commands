@@ -33,31 +33,29 @@ namespace SayedHa.Commands {
                 var nchelper = new NetCoreHelper();
                 var sdksInstalled = await nchelper.GetSdksInstalled();
 
-                // TODO: This fails if there is more than one install of the same version
-                var sdksMap = new Dictionary<string, ISdkInfo>();
-                foreach(var sdk in sdksInstalled) {
-                    sdksMap.Add(sdk.Version, sdk);
-                }
-
                 foreach(var verToDelete in sdkVersionsToDelete) {
-                    ISdkInfo todelete;
+                    bool foundVerLocalPathToDelete = false;
+                    foreach(var sdkInfo in sdksInstalled) {
+                        if (string.Compare(verToDelete, sdkInfo.Version, StringComparison.OrdinalIgnoreCase) != 0) {
+                            continue;
+                        }
 
-                    if (!(sdksMap.TryGetValue(verToDelete, out todelete)) ||
-                        string.IsNullOrEmpty(todelete?.InstallPath)) {
-                        reporter.Warn($"No installed version found for '{verToDelete}'");
-                        continue;
-                    }
+                        if (Directory.Exists(sdkInfo.InstallPath)) {
+                            reporter.Output($"Deleting folder {sdkInfo.InstallPath}");
+                            foundVerLocalPathToDelete = true;
 
-                    if (Directory.Exists(todelete.InstallPath) ){
-                        reporter.Output($"Deleting folder {todelete.InstallPath}");
-
-                        if (!whatIf) {
-                            // perform deletion
-                            Directory.Delete(todelete.InstallPath, true);
+                            if (!whatIf) {
+                                // perform deletion
+                                Directory.Delete(sdkInfo.InstallPath, true);
+                            }
+                        }
+                        else {
+                            reporter.Warn($"SDK directory not found at '{sdkInfo.InstallPath}'");
                         }
                     }
-                    else {
-                        reporter.Warn($"SDK directory not found at '{todelete.InstallPath}'");
+
+                    if (!foundVerLocalPathToDelete) {
+                        reporter.Warn($"No installed version found for '{verToDelete}'");
                     }
                 }
             });
