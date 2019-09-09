@@ -15,7 +15,7 @@ namespace SayedHa.Commands {
         public RegexTesterCommand(IReporter reporter) : base(
             "regex",
             "regextester",
-            "Tests your regular expressions") {
+            "Tests your regular expressions.") {
 
             Debug.Assert(reporter != null);
 

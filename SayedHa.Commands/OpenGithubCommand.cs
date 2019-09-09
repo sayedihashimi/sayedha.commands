@@ -11,7 +11,7 @@ namespace SayedHa.Commands {
         public OpenGithubCommand() : base(
             "og",
             "OpenGithub",
-            "If the repo has an origin pointing to github.com the project page will be opened,") {
+            "If the repo has an origin pointing to github.com the project page will be opened.") {
 
             // options
             var optionDirectory = this.Option<string>(

@@ -7,7 +7,7 @@ namespace SayedHa.Commands {
         public ConvertClipboardToPlainText():base(
             "convertclip",
             "ConvertClipboardToPlainText",
-            "Converts clipboard contents to plain text and readds to clipboard"){
+            "Converts clipboard contents to plain text and readds to clipboard."){
 
             this.OnExecute(() => {
                 try {

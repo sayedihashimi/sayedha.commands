@@ -12,7 +12,7 @@ namespace SayedHa.Commands {
         public RemoveSubfoldersCommand() : base(
             "removefolders",
             "removesubfolders",
-            $"Removes the listed folders under the path specified. Default path is the current working directory '{Directory.GetCurrentDirectory()}'") {
+            $"Removes the listed folders under the path specified. Default path is the current working directory.'{Directory.GetCurrentDirectory()}'") {
 
             // options
             var optionRootFolder = this.Option<string>(
