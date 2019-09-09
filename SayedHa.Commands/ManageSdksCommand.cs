@@ -7,12 +7,13 @@ using SayedHa.Commands.Shared;
 
 namespace SayedHa.Commands {
     public class ManageSdksCommand : BaseCommandLineApplication{
-        public ManageSdksCommand(IReporter reporter) : base(
+        public ManageSdksCommand(IReporter reporter,INetCoreHelper netCoreHelper) : base(
             "deletesdks",
             "deletesdks",
             "Enables you to delete .NET Core SDKs that are installed."){
 
             Debug.Assert(reporter != null);
+            Debug.Assert(netCoreHelper != null);
 
             // options
             var optionSdkToDelete = this.Option<string>(
@@ -30,8 +31,7 @@ namespace SayedHa.Commands {
                 var sdkVersionsToDelete = optionSdkToDelete.ParsedValues;
                 var whatIf = optionWhatIf.HasValue();
 
-                var nchelper = new NetCoreHelper();
-                var sdksInstalled = await nchelper.GetSdksInstalled();
+                var sdksInstalled = await netCoreHelper.GetSdksInstalled();
 
                 foreach(var verToDelete in sdkVersionsToDelete) {
                     bool foundVerLocalPathToDelete = false;

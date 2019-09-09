@@ -1,6 +1,7 @@
 ﻿using System;
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
+using SayedHa.Commands.Shared;
 
 namespace SayedHa.Commands {
     class Program {
@@ -35,7 +36,12 @@ namespace SayedHa.Commands {
             app.Commands.Add(new CloneRepoCommand());
             app.Commands.Add(new InitVsGitRepoCommand());
             app.Commands.Add(new RegexTesterCommand(GetFromServices<IReporter>()));
-            app.Commands.Add(new ManageSdksCommand(GetFromServices<IReporter>()));
+            app.Commands.Add(new ManageSdksCommand(
+                                 GetFromServices<IReporter>(),
+                                 GetFromServices<INetCoreHelper>()));
+            app.Commands.Add(new ListSdksCommand(
+                                 GetFromServices<IReporter>(),
+                                 GetFromServices<INetCoreHelper>()));
             app.Execute(_args);
         }
 
@@ -43,6 +49,7 @@ namespace SayedHa.Commands {
             _services = new ServiceCollection();
             _serviceProvider = _services.AddSingleton(typeof(IConsole), PhysicalConsole.Singleton)
                                         .AddSingleton<IReporter,ConsoleReporter>()
+                                        .AddScoped<INetCoreHelper,NetCoreHelper>()
                                         .BuildServiceProvider();
         }
 
