@@ -31,7 +31,7 @@ namespace SayedHa.Commands {
                 var sdkVersionsToDelete = optionSdkToDelete.ParsedValues;
                 var whatIf = optionWhatIf.HasValue();
 
-                var sdksInstalled = await netCoreHelper.GetSdksInstalled();
+                var sdksInstalled = await netCoreHelper.GetSdksInstalledAsync();
 
                 foreach(var verToDelete in sdkVersionsToDelete) {
                     bool foundVerLocalPathToDelete = false;

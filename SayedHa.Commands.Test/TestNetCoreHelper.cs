@@ -9,7 +9,16 @@ namespace SayedHa.Commands.Test {
         [Fact]
         public async Task TestGetSdkPaths() {
             var nchelper = new NetCoreHelper();
-            var result = await nchelper.GetSdksInstalled();
+            var result = await nchelper.GetSdksInstalledAsync();
+
+            Assert.NotNull(result);
+            Assert.True(result.Count > 0);
+        }
+
+        [Fact]
+        public async Task TestGetRuntimesInstalled() {
+            var nchelper = new NetCoreHelper();
+            var result = await nchelper.GetRuntimesInstalledAsync();
 
             Assert.NotNull(result);
             Assert.True(result.Count > 0);
