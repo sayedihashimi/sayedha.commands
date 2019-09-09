@@ -6,8 +6,8 @@ using McMaster.Extensions.CommandLineUtils;
 using SayedHa.Commands.Shared;
 
 namespace SayedHa.Commands {
-    public class ManageSdksCommand : BaseCommandLineApplication{
-        public ManageSdksCommand(IReporter reporter,INetCoreHelper netCoreHelper) : base(
+    public class DeleteSdksCommand : BaseCommandLineApplication{
+        public DeleteSdksCommand(IReporter reporter,INetCoreHelper netCoreHelper) : base(
             "deletesdks",
             "deletesdks",
             "Enables you to delete .NET Core SDKs that are installed."){
