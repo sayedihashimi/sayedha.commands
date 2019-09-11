@@ -6,8 +6,8 @@ using SayedHa.Commands.Shared;
 namespace SayedHa.Commands {
     public class ListSdksCommand : BaseCommandLineApplication {
         public ListSdksCommand(IReporter reporter, INetCoreHelper netCoreHelper) : base(
-            "listSdks",
-            "listNetScoreSdks",
+            "listsdks",
+            "listNetCoreSdks",
             "Lists thet .NET Core SDKs that are installed."){
 
             Debug.Assert(netCoreHelper != null);
