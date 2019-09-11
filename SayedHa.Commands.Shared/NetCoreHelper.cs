@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace SayedHa.Commands.Shared {
     public class NetCoreHelper : INetCoreHelper {
@@ -44,40 +45,6 @@ namespace SayedHa.Commands.Shared {
 
             return sdksInstalled;
         }
-        public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync() {
-            string runtimesInstalledString = await GetRuntimesInstalledString();
-            if (string.IsNullOrEmpty(runtimesInstalledString)) { return null; }
-
-            List<IRuntimeInfo> runtimesInstalled = new List<IRuntimeInfo>();
-            var runtimesRegex = new Regex(Strings.GetRuntimesInstalledRegex, RegexOptions.Compiled);
-            foreach(var line in runtimesInstalledString.Split('\n')) {
-                var result = runtimesRegex.Match(line);
-                if (result.Success) {
-                    string category = result.Groups?[1]?.Value;
-                    string version = result.Groups?[2]?.Value;
-                    string installBasePath = result.Groups?[3]?.Value;
-                    if(string.IsNullOrEmpty(category) ||
-                        string.IsNullOrEmpty(version) ||
-                        string.IsNullOrEmpty(installBasePath)) {
-                        continue;
-                    }
-                    var runtimeInfo = new RuntimeInfo {
-                        Category = category,
-                        Version = version,
-                        InstallPath = Path.Combine(installBasePath,version)
-                    };
-                    if (Directory.Exists(runtimeInfo.InstallPath)) {
-                        runtimesInstalled.Add(runtimeInfo);
-                    }
-                    else {
-                        Console.Error.WriteLine($"Runtime directory not found at {runtimeInfo.InstallPath}");
-                    }
-                }
-            }
-
-            return runtimesInstalled;
-        }
-
 
         public async Task<string> GetSdksInstalledString() {
             // run the command dotnet --list-sdks and return the result
@@ -99,6 +66,62 @@ namespace SayedHa.Commands.Shared {
             };
 
             return (await cliCommand.RunCommand()).StandardOutput;
+        }
+
+        public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync() {
+            string runtimesInstalledString = await GetRuntimesInstalledString();
+            if (string.IsNullOrEmpty(runtimesInstalledString)) { return null; }
+
+            List<IRuntimeInfo> runtimesInstalled = new List<IRuntimeInfo>();
+            var runtimesRegex = new Regex(Strings.GetRuntimesInstalledRegex, RegexOptions.Compiled);
+            foreach (var line in runtimesInstalledString.Split('\n')) {
+                var result = runtimesRegex.Match(line);
+                if (result.Success) {
+                    string category = result.Groups?[1]?.Value;
+                    string version = result.Groups?[2]?.Value;
+                    string installBasePath = result.Groups?[3]?.Value;
+                    if (string.IsNullOrEmpty(category) ||
+                        string.IsNullOrEmpty(version) ||
+                        string.IsNullOrEmpty(installBasePath)) {
+                        continue;
+                    }
+                    var runtimeInfo = new RuntimeInfo {
+                        Category = category,
+                        Version = version,
+                        InstallPath = Path.Combine(installBasePath, version)
+                    };
+                    if (Directory.Exists(runtimeInfo.InstallPath)) {
+                        runtimesInstalled.Add(runtimeInfo);
+                    }
+                    else {
+                        Console.Error.WriteLine($"Runtime directory not found at {runtimeInfo.InstallPath}");
+                    }
+                }
+            }
+
+            return runtimesInstalled;
+        }
+
+        /// <summary>
+        /// Gets the runtimes installed by version and category. Version is required but category is optional.
+        /// If there is a match of a given version, and no category is passed all versions will be returned.
+        /// </summary>
+        /// <param name="versions">Required parameter</param>
+        /// <param name="categories">Optional</param>
+        public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync(IList<string> versions, IList<string> categories) {
+            var runtimesInstalled = await GetRuntimesInstalledAsync();
+            var runtimesMatched = runtimesInstalled;
+
+            foreach(var rt in runtimesInstalled) {
+                if (!(categories.Any(cat => cat.Equals(rt.Category, StringComparison.OrdinalIgnoreCase)))) {
+                    runtimesMatched.Remove(rt);
+                }
+                else if (!(versions.Any(r => r.Equals(rt.Version, StringComparison.OrdinalIgnoreCase)))) {
+                    runtimesMatched.Remove(rt);
+                }
+            }
+            
+            return runtimesMatched;
         }
     }
 }

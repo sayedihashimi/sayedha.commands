@@ -36,10 +36,16 @@ namespace SayedHa.Commands {
             app.Commands.Add(new CloneRepoCommand());
             app.Commands.Add(new InitVsGitRepoCommand());
             app.Commands.Add(new RegexTesterCommand(GetFromServices<IReporter>()));
+            app.Commands.Add(new ListSdksCommand(
+                                 GetFromServices<IReporter>(),
+                                 GetFromServices<INetCoreHelper>()));
             app.Commands.Add(new DeleteSdksCommand(
                                  GetFromServices<IReporter>(),
                                  GetFromServices<INetCoreHelper>()));
-            app.Commands.Add(new ListSdksCommand(
+            app.Commands.Add(new ListRuntimesCommand(
+                                 GetFromServices<IReporter>(),
+                                 GetFromServices<INetCoreHelper>()));
+            app.Commands.Add(new DeleteRuntimesCommand(
                                  GetFromServices<IReporter>(),
                                  GetFromServices<INetCoreHelper>()));
             app.Execute(_args);

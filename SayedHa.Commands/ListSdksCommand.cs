@@ -10,6 +10,7 @@ namespace SayedHa.Commands {
             "listNetCoreSdks",
             "Lists thet .NET Core SDKs that are installed."){
 
+            Debug.Assert(reporter != null);
             Debug.Assert(netCoreHelper != null);
 
             // no options

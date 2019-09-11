@@ -10,7 +10,7 @@ namespace SayedHa.Commands {
         public DeleteSdksCommand(IReporter reporter,INetCoreHelper netCoreHelper) : base(
             "deletesdks",
             "deletesdks",
-            "Enables you to delete .NET Core SDKs that are installed."){
+            "Deletes .NET Core SDKs that are installed."){
 
             Debug.Assert(reporter != null);
             Debug.Assert(netCoreHelper != null);
