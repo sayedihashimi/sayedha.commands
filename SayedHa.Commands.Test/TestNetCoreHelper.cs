@@ -48,15 +48,38 @@ namespace SayedHa.Commands.Test {
         [Fact]
         private async Task TestGetRuntimesInstalledAsync_OneVersionAsync() {
             var netcorehelper = GetNewNetCoreHelperMock();
-
-            var result = await netcorehelper.GetRuntimesInstalledAsync(new List<string> { "2.1.2" }, null);
+            var version = "2.1.2";
+            var result = await netcorehelper.GetRuntimesInstalledAsync(new List<string> { version }, null);
 
             Assert.NotNull(result);
             Assert.NotEmpty(result);
             Assert.True(result.Count == 3);
-            Assert.Equal(0, string.Compare("2.1.2", result[0].Version));
-            Assert.Equal(0, string.Compare("2.1.2", result[1].Version));
-            Assert.Equal(0, string.Compare("2.1.2", result[2].Version));
+            Assert.Equal(0, string.Compare(version, result[0].Version));
+            Assert.Equal(0, string.Compare(version, result[1].Version));
+            Assert.Equal(0, string.Compare(version, result[2].Version));
+        }
+
+        [Fact]
+        private async Task TestGetRuntimesInstalledAsync_OneVersionOneCategoryAsync() {
+            var netcorehelper = GetNewNetCoreHelperMock();
+            var version = "2.1.2";
+            var cat = "Microsoft.AspNetCore.App";
+            var result = await netcorehelper.GetRuntimesInstalledAsync(new List<string> { "2.1.2" }, new List<string> { "Microsoft.AspNetCore.App" });
+
+            Assert.NotNull(result);
+            Assert.NotEmpty(result);
+            Assert.Single(result);
+            Assert.Equal(0, string.Compare(version, result[0].Version));
+            Assert.Equal(0, string.Compare(cat, result[0].Category));
+        }
+
+        [Fact]
+        private async Task TestGetRuntimesInstalledAsync_NoResultAsync() {
+            var netcorehelper = GetNewNetCoreHelperMock();
+            var version = "no-such-version";
+
+            var result = await netcorehelper.GetRuntimesInstalledAsync(new List<string> { version }, null);
+            Assert.Empty(result);
         }
 
         private INetCoreHelper GetNewNetCoreHelperMock() {
