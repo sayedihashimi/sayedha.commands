@@ -46,7 +46,8 @@ namespace SayedHa.Commands.Shared {
             return sdksInstalled;
         }
 
-        public async Task<string> GetSdksInstalledString() {
+        // marking virtual so it can be mocked
+        public virtual async Task<string> GetSdksInstalledString() {
             // run the command dotnet --list-sdks and return the result
 
             var cliCommand = new CliCommand {
@@ -57,7 +58,8 @@ namespace SayedHa.Commands.Shared {
             return (await cliCommand.RunCommand()).StandardOutput;
         }
 
-        public async Task<string> GetRuntimesInstalledString() {
+        // marking virtual so it can be mocked
+        public virtual async Task<string> GetRuntimesInstalledString() {
             // run the command dotnet --list-runtimes and return the result
 
             var cliCommand = new CliCommand {
