@@ -4,6 +4,7 @@ using Moq;
 using SayedHa.Commands.Shared;
 using Xunit;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace SayedHa.Commands.Test {
     public class TestNetCoreHelper {
@@ -31,24 +32,38 @@ namespace SayedHa.Commands.Test {
             //var mock = new Mock<NetCoreHelper> { CallBase = true };
             //mock.Setup(m => m.GetRuntimesInstalledString()).ReturnsAsync(SampleRuntimesString01);
 
-            var mock = GetNewNetCoreHelperMock();
-            var result = await mock.GetRuntimesInstalledString();
-            var installedRuntimes = await mock.GetRuntimesInstalledAsync();
+            var netcorehelper = GetNewNetCoreHelperMock();
+            var result = await netcorehelper.GetRuntimesInstalledString();
+            var installedRuntimes = await netcorehelper.GetRuntimesInstalledAsync();
 
             var versionsInstalled = (from ir in installedRuntimes
                                      select ir.Version).ToList();
 
             Assert.True(string.Compare(SampleRuntimesString01, result, StringComparison.OrdinalIgnoreCase) == 0);
-            Assert.True(versionsInstalled.Contains("2.1.2"));
-            Assert.True(versionsInstalled.Contains("3.0.0-preview8.19405.7"));
-            Assert.True(versionsInstalled.Contains("2.1.11"));
+            Assert.Contains<string>("2.1.2", versionsInstalled);
+            Assert.Contains<string>("3.0.0-preview8.19405.7", versionsInstalled);
+            Assert.Contains<string>("2.1.11", versionsInstalled);
+        }
+
+        [Fact]
+        private async Task TestGetRuntimesInstalledAsync_OneVersionAsync() {
+            var netcorehelper = GetNewNetCoreHelperMock();
+
+            var result = await netcorehelper.GetRuntimesInstalledAsync(new List<string> { "2.1.2" }, null);
+
+            Assert.NotNull(result);
+            Assert.NotEmpty(result);
+            Assert.True(result.Count == 3);
+            Assert.Equal(0, string.Compare("2.1.2", result[0].Version));
+            Assert.Equal(0, string.Compare("2.1.2", result[1].Version));
+            Assert.Equal(0, string.Compare("2.1.2", result[2].Version));
         }
 
         private INetCoreHelper GetNewNetCoreHelperMock() {
-            var mock = new Mock<NetCoreHelper> { CallBase = true };
-            mock.Setup(m => m.GetRuntimesInstalledString()).ReturnsAsync(SampleRuntimesString01);
-            mock.Setup(m => m.GetSdksInstalledString()).ReturnsAsync(SampleSdksString01);
-            return mock.Object;
+            var netcorehelper = new Mock<NetCoreHelper> { CallBase = true };
+            netcorehelper.Setup(m => m.GetRuntimesInstalledString()).ReturnsAsync(SampleRuntimesString01);
+            netcorehelper.Setup(m => m.GetSdksInstalledString()).ReturnsAsync(SampleSdksString01);
+            return netcorehelper.Object;
         }
 
         private const string SampleRuntimesString01 = @"Microsoft.AspNetCore.All 2.1.2 [/usr/local/share/dotnet/shared/Microsoft.AspNetCore.All]

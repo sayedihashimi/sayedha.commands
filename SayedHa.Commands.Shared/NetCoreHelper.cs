@@ -71,6 +71,7 @@ namespace SayedHa.Commands.Shared {
         }
 
         public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync() {
+            // TODO: Should try to just call this once and save the value
             string runtimesInstalledString = await GetRuntimesInstalledString();
             if (string.IsNullOrEmpty(runtimesInstalledString)) { return null; }
 
@@ -112,13 +113,15 @@ namespace SayedHa.Commands.Shared {
         /// <param name="categories">Optional</param>
         public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync(IList<string> versions, IList<string> categories) {
             var runtimesInstalled = await GetRuntimesInstalledAsync();
-            var runtimesMatched = runtimesInstalled;
+            var runtimesMatched = runtimesInstalled.ToList();
 
             foreach(var rt in runtimesInstalled) {
-                if (!(categories.Any(cat => cat.Equals(rt.Category, StringComparison.OrdinalIgnoreCase)))) {
+                if ( categories != null &&
+                    !(categories.Any(cat => cat.Equals(rt.Category, StringComparison.OrdinalIgnoreCase)))) {
                     runtimesMatched.Remove(rt);
                 }
-                else if (!(versions.Any(r => r.Equals(rt.Version, StringComparison.OrdinalIgnoreCase)))) {
+                else if (versions != null &&
+                        !(versions.Any(r => r.Equals(rt.Version, StringComparison.OrdinalIgnoreCase)))) {
                     runtimesMatched.Remove(rt);
                 }
             }
