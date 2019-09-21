@@ -12,7 +12,7 @@ namespace SayedHa.Commands.Test {
         [Fact]
         public async Task TestGetSdkPaths() {
             var nchelper = GetNewNetCoreHelperMock();
-            var result = await nchelper.GetSdksInstalledAsync();
+            var result = await nchelper.GetSdksInstalledAsync(false);
 
             Assert.NotNull(result);
             Assert.True(result.Count > 0);
@@ -21,7 +21,7 @@ namespace SayedHa.Commands.Test {
         [Fact]
         public async Task TestGetRuntimesInstalled() {
             var nchelper = GetNewNetCoreHelperMock();
-            var result = await nchelper.GetRuntimesInstalledAsync();
+            var result = await nchelper.GetRuntimesInstalledAsync(false);
 
             Assert.NotNull(result);
             Assert.True(result.Count > 0);
@@ -34,7 +34,7 @@ namespace SayedHa.Commands.Test {
 
             var netcorehelper = GetNewNetCoreHelperMock();
             var result = await netcorehelper.GetRuntimesInstalledString();
-            var installedRuntimes = await netcorehelper.GetRuntimesInstalledAsync();
+            var installedRuntimes = await netcorehelper.GetRuntimesInstalledAsync(false);
 
             var versionsInstalled = (from ir in installedRuntimes
                                      select ir.Version).ToList();
@@ -49,7 +49,7 @@ namespace SayedHa.Commands.Test {
         private async Task TestGetRuntimesInstalledAsync_OneVersionAsync() {
             var netcorehelper = GetNewNetCoreHelperMock();
             var version = "2.1.2";
-            var result = await netcorehelper.GetRuntimesInstalledAsync(new List<string> { version }, null);
+            var result = await netcorehelper.GetRuntimesInstalledAsync(new List<string> { version }, null, false);
 
             Assert.NotNull(result);
             Assert.NotEmpty(result);
@@ -64,7 +64,7 @@ namespace SayedHa.Commands.Test {
             var netcorehelper = GetNewNetCoreHelperMock();
             var version = "2.1.2";
             var cat = "Microsoft.AspNetCore.App";
-            var result = await netcorehelper.GetRuntimesInstalledAsync(new List<string> { "2.1.2" }, new List<string> { "Microsoft.AspNetCore.App" });
+            var result = await netcorehelper.GetRuntimesInstalledAsync(new List<string> { "2.1.2" }, new List<string> { "Microsoft.AspNetCore.App" },false);
 
             Assert.NotNull(result);
             Assert.NotEmpty(result);

@@ -11,6 +11,10 @@ using System.Linq;
 namespace SayedHa.Commands.Shared {
     public class NetCoreHelper : INetCoreHelper {
         public async Task<List<SdkInfo>> GetSdksInstalledAsync() {
+            return await GetSdksInstalledAsync(true);
+        }
+
+        public async Task<List<SdkInfo>> GetSdksInstalledAsync(bool verifyFolderIsOnDisk) {
             string sdksInstalledStr = await GetSdksInstalledString();
             if (string.IsNullOrEmpty(sdksInstalledStr)) { return null; }
 
@@ -33,7 +37,7 @@ namespace SayedHa.Commands.Shared {
                         Version = version
                     };
 
-                    if (Directory.Exists(sdkInfo.InstallPath)) {
+                    if (!verifyFolderIsOnDisk || Directory.Exists(sdkInfo.InstallPath)) {
                         sdksInstalled.Add(sdkInfo);
                     }
                     else {
@@ -69,8 +73,10 @@ namespace SayedHa.Commands.Shared {
 
             return (await cliCommand.RunCommand()).StandardOutput;
         }
-
         public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync() {
+            return await GetRuntimesInstalledAsync(true);
+        }
+        public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync(bool verifyFolderIsOnDisk) {
             // TODO: Should try to just call this once and save the value
             string runtimesInstalledString = await GetRuntimesInstalledString();
             if (string.IsNullOrEmpty(runtimesInstalledString)) { return null; }
@@ -83,17 +89,20 @@ namespace SayedHa.Commands.Shared {
                     string category = result.Groups?[1]?.Value;
                     string version = result.Groups?[2]?.Value;
                     string installBasePath = result.Groups?[3]?.Value;
+
                     if (string.IsNullOrEmpty(category) ||
                         string.IsNullOrEmpty(version) ||
                         string.IsNullOrEmpty(installBasePath)) {
                         continue;
                     }
+
                     var runtimeInfo = new RuntimeInfo {
                         Category = category,
                         Version = version,
                         InstallPath = Path.Combine(installBasePath, version)
                     };
-                    if (Directory.Exists(runtimeInfo.InstallPath)) {
+
+                    if (!verifyFolderIsOnDisk || Directory.Exists(runtimeInfo.InstallPath)) {
                         runtimesInstalled.Add(runtimeInfo);
                     }
                     else {
@@ -105,14 +114,17 @@ namespace SayedHa.Commands.Shared {
             return runtimesInstalled;
         }
 
+        public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync(IList<string> versions, IList<string> categories) {
+            return await GetRuntimesInstalledAsync(versions, categories, true);
+        }
         /// <summary>
         /// Gets the runtimes installed by version and category. Version is required but category is optional.
         /// If there is a match of a given version, and no category is passed all versions will be returned.
         /// </summary>
         /// <param name="versions">Required parameter</param>
         /// <param name="categories">Optional</param>
-        public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync(IList<string> versions, IList<string> categories) {
-            var runtimesInstalled = await GetRuntimesInstalledAsync();
+        public async Task<List<IRuntimeInfo>> GetRuntimesInstalledAsync(IList<string> versions, IList<string> categories, bool verifyFolderIsOnDisk) {
+            var runtimesInstalled = await GetRuntimesInstalledAsync(verifyFolderIsOnDisk);
             var runtimesMatched = runtimesInstalled.ToList();
 
             foreach(var rt in runtimesInstalled) {
