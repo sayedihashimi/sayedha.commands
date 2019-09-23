@@ -29,9 +29,6 @@ namespace SayedHa.Commands.Test {
 
         [Fact]
         public async Task TestGetRuntimesByVersion01Async() {
-            //var mock = new Mock<NetCoreHelper> { CallBase = true };
-            //mock.Setup(m => m.GetRuntimesInstalledString()).ReturnsAsync(SampleRuntimesString01);
-
             var netcorehelper = GetNewNetCoreHelperMock();
             var result = await netcorehelper.GetRuntimesInstalledString();
             var installedRuntimes = await netcorehelper.GetRuntimesInstalledAsync(false);

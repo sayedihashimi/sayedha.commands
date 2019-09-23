@@ -41,37 +41,13 @@ namespace SayedHa.Commands {
 
                 var whatif = optionWhatIf.HasValue();
 
-                var runtimesInstalled = await netCoreHelper.GetRuntimesInstalledAsync();
+                var runtimesToDelete = await netCoreHelper.GetRuntimesInstalledAsync(
+                    (runtimeVersionsToDelete ?? (new List<string>())).ToList(),
+                    (categories ?? new List<string>()).ToList()); 
 
-                var runtimesToInspect = runtimesInstalled;
-                // filter installed by category if passed
-                if(categories != null && categories.Count > 0) {
-                    // runtimesToInspect = new List<IRuntimeInfo>();
-                    // filter out any runtime that is not in the listed categories
-                    
+                foreach(var runtime in runtimesToDelete) {
+                    reporter.Output($"to delete: {runtime.InstallPath}");
                 }
-
-                foreach(var rt in runtimesInstalled) {
-                    if (!(categories.Any(cat => cat.Equals(rt.Category, StringComparison.OrdinalIgnoreCase)))) {
-                        runtimesToInspect.Remove(rt);
-                    }
-                    else if (!(runtimeVersionsToDelete.Any(r => r.Equals(rt.Version, StringComparison.OrdinalIgnoreCase)))) {
-                        runtimesToInspect.Remove(rt);
-                    }
-                }
-
-
-
-                /*
-                 * if( testList.Any( s => s.Equals(keyword, StringComparison.OrdinalIgnoreCase) ) )
-                   Console.WriteLine("found in list");
-                 */
-
-                foreach (var todelete in runtimeVersionsToDelete) {
-                    // get each runtime that matches
-                    foreach(var runtime in runtimeVersionsToDelete) { }
-                }
-
             });
         }
     }
