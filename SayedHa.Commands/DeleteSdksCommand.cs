@@ -21,7 +21,7 @@ namespace SayedHa.Commands {
                 "SDK version to delete",
                 CommandOptionType.MultipleValue);
             optionSdkToDelete.IsRequired(errorMessage: "Version to delete is required");
-
+             
             var optionWhatIf = this.Option<string>(
                 "--whatif",
                 "Will display the list of folders that would be removed if the command was executed without this switch.",

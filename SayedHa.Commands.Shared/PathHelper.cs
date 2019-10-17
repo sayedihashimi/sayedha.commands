@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using SayedHa.Commands.Shared.Exceptions;
 
 namespace SayedHa.Commands.Shared {
-    public class PathHelper {
+    public class PathHelper : IPathHelper {
         public int RecursionLimit { get; protected set; } = 1000;
 
         public string GetHomeFolder() {

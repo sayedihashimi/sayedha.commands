@@ -40,12 +40,22 @@ namespace SayedHa.Commands {
                                     null;
 
                 var whatif = optionWhatIf.HasValue();
+                if (whatif) {
+                    reporter.Output("Running in whatif mode");
+                }
 
                 var runtimesToDelete = await netCoreHelper.GetRuntimesInstalledAsync(
                     (runtimeVersionsToDelete ?? (new List<string>())).ToList(),
                     (categories ?? new List<string>()).ToList()); 
 
                 foreach(var runtime in runtimesToDelete) {
+                    if (Directory.Exists(runtime.InstallPath)) {
+                        reporter.Output($"Deleting folder at {runtime.InstallPath}");
+
+                        if (!whatif) {
+                            Directory.Delete(runtime.InstallPath, true);
+                        }
+                    }
                     reporter.Output($"to delete: {runtime.InstallPath}");
                 }
             });

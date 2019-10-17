@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using SayedHa.Commands.Shared.Extensions;
 
 namespace SayedHa.Commands.Shared {
-    public class WebHelper {
+    public class WebHelper : IWebHelper {
         public async Task DownloadFile(string url, string destFilepath, bool allowOverwrite = false) {
             Debug.Assert(!string.IsNullOrEmpty(url));
             Debug.Assert(!string.IsNullOrEmpty(destFilepath));
 
-            if(!allowOverwrite && File.Exists(destFilepath)) {
+            if (!allowOverwrite && File.Exists(destFilepath)) {
                 throw new FileExistsException($"File already exists at destination, and overwrite is set to false, path='{destFilepath}'");
             }
 
