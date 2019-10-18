@@ -50,6 +50,9 @@ namespace SayedHa.Commands {
             app.Commands.Add(new DeleteRuntimesCommand(
                                      GetFromServices<IReporter>(),
                                      GetFromServices<INetCoreHelper>()));
+
+            app.Commands.Add(new NewGuidCommand(GetFromServices<IReporter>()));
+
             app.Execute(_args);
         }
 
