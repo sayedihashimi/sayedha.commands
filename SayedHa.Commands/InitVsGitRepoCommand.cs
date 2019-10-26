@@ -44,7 +44,8 @@ namespace SayedHa.Commands {
                     // git init
                     await new CliCommand {
                         Command = "git",
-                        Arguments = "init"
+                        Arguments = "init",
+                        SupressExceptionOnNonZeroExitCode = true
                     }.RunCommand();
 
                     // add .gitignore
@@ -63,15 +64,15 @@ namespace SayedHa.Commands {
                     reporter.Output("adding files");
                     await new CliCommand {
                         Command = "git",
-                        Arguments = "add ."
+                        Arguments = "add .",
+                        SupressExceptionOnNonZeroExitCode = true
                     }.RunCommand();
 
-                    // TODO: This is not working for some reason
-                    // git commit
                     reporter.Output("creating initial commit");
                     await new CliCommand {
                         Command = "git",
-                        Arguments = @"commit -m ""git init"""
+                        Arguments = @"commit -m init",
+                        SupressExceptionOnNonZeroExitCode = true
                     }.RunCommand();
 
                     reporter.Output("✓ all done");

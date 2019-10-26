@@ -80,21 +80,24 @@ namespace SayedHa.Commands {
 
                 ICliCommand cloneCommand = new CliCommand {
                     Command = "git",
-                    Arguments = $"clone {url}"
+                    Arguments = $"clone {url}",
+                    SupressExceptionOnNonZeroExitCode = true
                 };
 
                 if (VerboseEnabled) Console.WriteLine("Cloning now");
 
                 await cloneCommand.RunCommand();
 
-                // TODO: Needs work
+                // TODO: Not working
+                // here is what we need to do but it's windows specific https://stackoverflow.com/a/10222171/105999
                 //if (Directory.Exists(targetDir)) {
                 //    Directory.SetCurrentDirectory(targetDir);
 
                 //    if (VerboseEnabled) Console.WriteLine($"attempting to change directory to '{targetDir}'");
                 //    var res = await new CliCommand {
                 //        Command = "cd",
-                //        Arguments = $"{targetDir}"
+                //        Arguments = $"{targetDir}",
+                //        SupressExceptionOnNonZeroExitCode = true
                 //    }.RunCommand();
                 //    if (VerboseEnabled) Console.WriteLine($"exit code: {res.ExitCode}");
                 //}

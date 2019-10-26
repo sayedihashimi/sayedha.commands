@@ -13,6 +13,7 @@ namespace SayedHa.Commands.Shared {
         public ProcessWindowStyle WindowStyle { get; set; } = ProcessWindowStyle.Hidden;
         public bool CreateNoWindow { get; set; } = true;
         public int TimeoutMilliseconds { get; set; }
+        public bool SupressExceptionOnNonZeroExitCode { get; set; }
 
         public async Task<ICliCommandResult> RunCommand() {
             var startInfo = new ProcessStartInfo {
@@ -60,6 +61,11 @@ namespace SayedHa.Commands.Shared {
                 StandardError = stderr,
                 Exception = exception
             };
+
+            if(result.ExitCode != 0 && !SupressExceptionOnNonZeroExitCode) {
+                throw new CliCommandReturnedNonZeroExitCodeException($"Exited with code {result.ExitCode}");
+            }
+
             return result;
         }
     }
