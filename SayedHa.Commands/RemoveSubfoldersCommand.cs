@@ -69,7 +69,11 @@ namespace SayedHa.Commands {
                     foreach(var folder in found) {
                         wasAFolderFound = true;
                         var fullpath = pathHelper.GetFullPath(folder);
-                        if (whatif) {
+
+                        if (!Directory.Exists(fullpath)) {
+                            System.Console.WriteLine($"Skipping folder because it doesn't exist {fullpath}");
+                        }
+                        else if (whatif) {
                             System.Console.WriteLine($"Found folder: '{fullpath}'");
                         }
                         else {
