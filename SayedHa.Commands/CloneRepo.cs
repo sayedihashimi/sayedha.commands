@@ -90,22 +90,22 @@ namespace SayedHa.Commands {
 
                 // TODO: Not working
                 // here is what we need to do but it's windows specific https://stackoverflow.com/a/10222171/105999
-                if (Directory.Exists(targetDir)) {
-                    Directory.SetCurrentDirectory(targetDir);
-                    if (VerboseEnabled) Console.WriteLine($"attempting to change directory to '{targetDir}'");
+                //if (Directory.Exists(targetDir)) {
+                //    Directory.SetCurrentDirectory(targetDir);
+                //    if (VerboseEnabled) Console.WriteLine($"attempting to change directory to '{targetDir}'");
 
-                    // https://dev.to/deinsoftware/run-a-command-in-external-terminal-with-net-core-d4l
-                    var commandstr = $"chdir {targetDir}";
-                    var res = await new CliCommand {
-                        Command = "/bin/bash",
-                        Arguments = $"-c \"{commandstr}\"",
-                        SupressExceptionOnNonZeroExitCode = true
-                    }.RunCommand();
-                    if (VerboseEnabled) Console.WriteLine($"exit code: {res.ExitCode}");
-                }
-                else {
-                    throw new DirectoryNotFoundException($"Unknown error, folder not found at: {targetDir}");
-                }
+                //    // https://dev.to/deinsoftware/run-a-command-in-external-terminal-with-net-core-d4l
+                //    var commandstr = $"chdir {targetDir}";
+                //    var res = await new CliCommand {
+                //        Command = "/bin/bash",
+                //        Arguments = $"-c \"{commandstr}\"",
+                //        SupressExceptionOnNonZeroExitCode = true
+                //    }.RunCommand();
+                //    if (VerboseEnabled) Console.WriteLine($"exit code: {res.ExitCode}");
+                //}
+                //else {
+                //    throw new DirectoryNotFoundException($"Unknown error, folder not found at: {targetDir}");
+                //}
             });
         }
     }
