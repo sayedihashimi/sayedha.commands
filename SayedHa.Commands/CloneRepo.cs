@@ -83,10 +83,20 @@ namespace SayedHa.Commands {
                     Arguments = $"clone {url}",
                     SupressExceptionOnNonZeroExitCode = true
                 };
+                Console.WriteLine("******======******");
+                if (VerboseEnabled) Console.WriteLine("Cloning now2");
 
-                if (VerboseEnabled) Console.WriteLine("Cloning now");
+                try {
+                    await cloneCommand.RunCommand();
+                }
+                catch(Exception ex) {
+                    Console.Error.WriteLine($"Error: {ex.ToString()}");
+                }
 
-                await cloneCommand.RunCommand();
+                if (VerboseEnabled) Console.WriteLine($"attempting to change directory to '{targetDir}'");
+                var cmdoutput = ShellHelper.Bash($"cd {targetDir}");
+                Console.WriteLine($"cmdoutput: {cmdoutput}");
+                
 
                 // TODO: Not working
                 // here is what we need to do but it's windows specific https://stackoverflow.com/a/10222171/105999

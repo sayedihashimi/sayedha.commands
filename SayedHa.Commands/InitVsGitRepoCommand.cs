@@ -80,7 +80,6 @@ namespace SayedHa.Commands {
                 finally {
                     Directory.SetCurrentDirectory(previousWd);
                 }
-                
             });
         }
     }
