@@ -56,7 +56,6 @@ namespace SayedHa.Commands {
                             Directory.Delete(runtime.InstallPath, true);
                         }
                     }
-                    reporter.Output($"to delete: {runtime.InstallPath}");
                 }
             });
         }

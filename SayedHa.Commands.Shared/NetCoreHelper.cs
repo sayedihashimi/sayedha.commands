@@ -128,7 +128,7 @@ namespace SayedHa.Commands.Shared {
             var runtimesMatched = runtimesInstalled.ToList();
 
             foreach(var rt in runtimesInstalled) {
-                if ( categories != null &&
+                if ( categories != null && categories.Count > 0 &&
                     !(categories.Any(cat => cat.Equals(rt.Category, StringComparison.OrdinalIgnoreCase)))) {
                     runtimesMatched.Remove(rt);
                 }
