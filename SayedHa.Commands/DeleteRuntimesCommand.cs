@@ -24,7 +24,7 @@ namespace SayedHa.Commands {
             optionRuntimeToDelete.IsRequired(errorMessage: "Version to delete is required.");
 
             var optionCategoryToDelete = this.Option<string>(
-                "-cat|--category",
+                "-c|--category",
                 "Category for the runtime installation (for example 'Microsoft.NETCore.App' or 'Microsoft.AspNetCore.All)'",
                 CommandOptionType.MultipleValue);
 
