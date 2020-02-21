@@ -17,13 +17,14 @@ namespace SayedHa.Commands {
                     Arguments = @"""Touch Bar agent"""
                 };
 
-                _ = await pkillCmd.RunCommand();
+                await pkillCmd.RunCommand();
 
                 await new CliCommand {
                     Command = "killall",
                     Arguments = @"""ControlStrip"""
                 }.RunCommand();
 
+                return 0;
             });
 
         }
