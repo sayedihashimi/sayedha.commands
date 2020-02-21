@@ -8,6 +8,24 @@ namespace SayedHa.Commands {
             "restart-touchbar",
             "Restarts macOS touchbar") {
 
+            this.OnExecute(async () => {
+                // pkill "Touch Bar agent";
+                // killall "ControlStrip";
+
+                ICliCommand pkillCmd = new CliCommand {
+                    Command = "pkill",
+                    Arguments = @"""Touch Bar agent"""
+                };
+
+                _ = await pkillCmd.RunCommand();
+
+                await new CliCommand {
+                    Command = "killall",
+                    Arguments = @"""ControlStrip"""
+                }.RunCommand();
+
+            });
+
         }
     }
 }
