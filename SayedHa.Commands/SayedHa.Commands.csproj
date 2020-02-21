@@ -31,4 +31,10 @@
     <ItemGroup>
         <ProjectReference Include="..\SayedHa.Commands.Shared\SayedHa.Commands.Shared.csproj" />
     </ItemGroup>
+    
+    <Target Name="InstallTool" DependsOnTargets="Pack">
+        <Exec Command="dotnet tool uninstall --global $(MSBuildProjectName)" IgnoreExitCode="true"/>
+        <Exec Command="dotnet tool install --global --add-source $(PackageOutputPath) $(MSBuildProjectName)"/>
+        <Exec Command="$(ToolCommandName) --help" />
+    </Target>
 </Project>

@@ -52,6 +52,7 @@ namespace SayedHa.Commands {
                                      GetFromServices<INetCoreHelper>()));
 
             app.Commands.Add(new NewGuidCommand(GetFromServices<IReporter>()));
+            app.Commands.Add(new RestartTouchbarCommand());
 
             app.Execute(_args);
         }
