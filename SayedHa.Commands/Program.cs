@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.DependencyInjection;
 using SayedHa.Commands.Shared;
@@ -52,8 +53,13 @@ namespace SayedHa.Commands {
                                      GetFromServices<INetCoreHelper>()));
 
             app.Commands.Add(new NewGuidCommand(GetFromServices<IReporter>()));
-            app.Commands.Add(new RestartTouchbarCommand());
+            
             app.Commands.Add(new LoremIpsumCommand());
+
+            // macOS specific commands
+            if (IsRunningOnMacOs()) {
+                app.Commands.Add(new RestartTouchbarCommand());
+            }
 
             app.Execute(_args);
         }
@@ -70,6 +76,10 @@ namespace SayedHa.Commands {
 
         private TType GetFromServices<TType>() {
             return _serviceProvider.GetRequiredService<TType>();
+        }
+
+        private bool IsRunningOnMacOs() {
+            return System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
         }
     }
 }

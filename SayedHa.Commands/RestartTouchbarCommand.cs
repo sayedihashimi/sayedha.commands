@@ -14,14 +14,16 @@ namespace SayedHa.Commands {
 
                 ICliCommand pkillCmd = new CliCommand {
                     Command = "pkill",
-                    Arguments = @"""Touch Bar agent"""
+                    Arguments = @"Touch Bar agent",
+                    SupressExceptionOnNonZeroExitCode = true
                 };
 
-                await pkillCmd.RunCommand();
+                var res1 = await pkillCmd.RunCommand();
 
-                await new CliCommand {
+                var res2 = await new CliCommand {
                     Command = "killall",
-                    Arguments = @"""ControlStrip"""
+                    Arguments = @"ControlStrip",
+                    SupressExceptionOnNonZeroExitCode = true
                 }.RunCommand();
 
                 return 0;
