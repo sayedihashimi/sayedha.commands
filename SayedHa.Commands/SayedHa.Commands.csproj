@@ -8,7 +8,7 @@
         <!-- nuget related properties -->
         <Authors>Sayed Ibrahim Hashimi</Authors>
         <Description>.NET Core global tool with some useful commands.</Description>
-        <Version>1.0.3</Version>
+        <Version>1.0.4</Version>
         <Copyright>Copyright 2019 © Sayed Ibrahim Hashimi. All rights reserved.</Copyright>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
@@ -33,8 +33,8 @@
     </ItemGroup>
     
     <Target Name="InstallTool" DependsOnTargets="Pack">
-        <Exec Command="dotnet tool uninstall --global $(MSBuildProjectName)" IgnoreExitCode="true"/>
-        <Exec Command="dotnet tool install --global --add-source $(PackageOutputPath) $(MSBuildProjectName)"/>
+        <Exec Command="dotnet tool uninstall --global $(MSBuildProjectName)" IgnoreExitCode="true" />
+        <Exec Command="dotnet tool install --global --add-source $(PackageOutputPath) $(MSBuildProjectName)" />
         <Exec Command="$(ToolCommandName) --help" />
     </Target>
 </Project>

@@ -53,6 +53,7 @@ namespace SayedHa.Commands {
 
             app.Commands.Add(new NewGuidCommand(GetFromServices<IReporter>()));
             app.Commands.Add(new RestartTouchbarCommand());
+            app.Commands.Add(new LoremIpsumCommand());
 
             app.Execute(_args);
         }
