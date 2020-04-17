@@ -83,8 +83,6 @@ namespace SayedHa.Commands {
                     Arguments = $"clone {url}",
                     SupressExceptionOnNonZeroExitCode = true
                 };
-                Console.WriteLine("******======******");
-                if (VerboseEnabled) Console.WriteLine("Cloning now2");
 
                 try {
                     await cloneCommand.RunCommand();
@@ -93,9 +91,9 @@ namespace SayedHa.Commands {
                     Console.Error.WriteLine($"Error: {ex.ToString()}");
                 }
 
-                if (VerboseEnabled) Console.WriteLine($"attempting to change directory to '{targetDir}'");
-                var cmdoutput = ShellHelper.Bash($"cd {targetDir}");
-                Console.WriteLine($"cmdoutput: {cmdoutput}");
+                //if (VerboseEnabled) Console.WriteLine($"attempting to change directory to '{targetDir}'");
+                //var cmdoutput = ShellHelper.Bash($"cd {targetDir}");
+                //Console.WriteLine($"cmdoutput: {cmdoutput}");
                 
 
                 // TODO: Not working
