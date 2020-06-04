@@ -31,7 +31,7 @@ namespace SayedHa.Commands {
 
             app.HelpOption(inherited: true);
             app.Commands.Add(new ConvertClipboardToPlainText());
-            app.Commands.Add(new OpenGithubCommand());
+            app.Commands.Add(new OpenGithubCommand(GetFromServices<IUrlHelper>()));
             app.Commands.Add(new RemoveSubfoldersCommand());
             app.Commands.Add(new CloneRepoCommand());
             app.Commands.Add(new InitVsGitRepoCommand(
@@ -71,6 +71,7 @@ namespace SayedHa.Commands {
                                         .AddScoped<INetCoreHelper,NetCoreHelper>()
                                         .AddScoped<IPathHelper,PathHelper>()
                                         .AddScoped<IWebHelper,WebHelper>()
+                                        .AddScoped<IUrlHelper,UrlHelper>()
                                         .BuildServiceProvider();
         }
 

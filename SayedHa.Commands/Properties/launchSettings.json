@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "SayedHa.Commands": {
+      "commandName": "Project",
+      "commandLineArgs": "og",
+      "workingDirectory": "C:\\data\\mycode\\sample-projects"
+    }
+  }
+}
