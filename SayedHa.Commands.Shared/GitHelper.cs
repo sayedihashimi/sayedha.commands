@@ -81,5 +81,20 @@ namespace SayedHa.Commands.Shared {
             }
             return (accountName, repoName);
         }
+
+        
+        public string GetLicenseString(string year, string copyrightName) {
+            string licString = Strings.ApacheLicString;
+            if (!string.IsNullOrWhiteSpace(year)) {
+                year = DateTime.Now.Year.ToString();
+            }
+            licString = licString.Replace("2017", year);
+
+            if (!string.IsNullOrEmpty(copyrightName)) {
+                licString = licString.Replace("Sayed Ibrahim Hashimi", copyrightName);
+            }
+
+            return licString;
+        }
     }
 }
