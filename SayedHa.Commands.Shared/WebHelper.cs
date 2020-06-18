@@ -11,18 +11,16 @@ namespace SayedHa.Commands.Shared {
             Debug.Assert(!string.IsNullOrEmpty(url));
             Debug.Assert(!string.IsNullOrEmpty(destFilepath));
 
-            if (!allowOverwrite && File.Exists(destFilepath)) {
-                throw new FileExistsException($"File already exists at destination, and overwrite is set to false, path='{destFilepath}'");
+            if (allowOverwrite || !File.Exists(destFilepath)) {
+                using var client = new WebClient();
+                var data = client.DownloadData(url);
+                using var content = new MemoryStream(data);
+                using var outstream = new FileStream(destFilepath, FileMode.Create);
+                await content.CopyToAsync(outstream);
+
+                content.Close();
+                outstream.Close();
             }
-
-            using var client = new WebClient();
-            var data = client.DownloadData(url);
-            using var content = new MemoryStream(data);
-            using var outstream = new FileStream(destFilepath, FileMode.Create);
-            await content.CopyToAsync(outstream);
-
-            content.Close();
-            outstream.Close();
         }
     }
 }

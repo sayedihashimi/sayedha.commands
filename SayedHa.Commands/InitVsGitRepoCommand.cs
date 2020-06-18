@@ -49,31 +49,49 @@ namespace SayedHa.Commands {
                     }.RunCommand();
 
                     // add .gitignore
-                    reporter.Output("adding .gitignore");
-                    await webHelper.DownloadFile(
-                        KnownStrings.GitIgnoreUrl,
-                        Path.Combine(rootFolder, KnownStrings.GitIgnoreFilename));
+                    string ignoreFilepath = Path.Combine(rootFolder, KnownStrings.GitIgnoreFilename);
+                    if (!File.Exists(ignoreFilepath)) {
+                        reporter.Output("adding .gitignore");
+                        await webHelper.DownloadFile(
+                            KnownStrings.GitIgnoreUrl,
+                            ignoreFilepath);
+                    }
+                    else {
+                        reporter.Output("skipping .gitignore because it already exists");
+                    }
 
                     // add .gitattributes
-                    reporter.Output("adding .gitattributes");
-                    await webHelper.DownloadFile(
-                        KnownStrings.GitAttributesUrl,
-                        Path.Combine(rootFolder, KnownStrings.GitAttributesFilename));
-                    
-                    // git add .
-                    reporter.Output("adding files");
-                    await new CliCommand {
-                        Command = "git",
-                        Arguments = "add .",
-                        SupressExceptionOnNonZeroExitCode = true
-                    }.RunCommand();
+                    string attributesFilepath = Path.Combine(rootFolder, KnownStrings.GitAttributesFilename);
+                    if (!File.Exists(attributesFilepath)) {
+                        reporter.Output("adding .gitattributes");
+                        await webHelper.DownloadFile(
+                            KnownStrings.GitAttributesUrl,
+                            attributesFilepath);
+                    }
+                    else {
+                        reporter.Output("skipping .gitattributes because it already exists");
+                    }
 
-                    reporter.Output("creating initial commit");
-                    await new CliCommand {
-                        Command = "git",
-                        Arguments = @"commit -m init",
-                        SupressExceptionOnNonZeroExitCode = true
-                    }.RunCommand();
+                    // git add .
+                    string gitfolderpath = Path.Combine(rootFolder, ".git");
+                    if (!Directory.Exists(gitfolderpath)) {
+                        reporter.Output("adding files");
+                        await new CliCommand {
+                            Command = "git",
+                            Arguments = "add .",
+                            SupressExceptionOnNonZeroExitCode = true
+                        }.RunCommand();
+
+                        reporter.Output("creating initial commit");
+                        await new CliCommand {
+                            Command = "git",
+                            Arguments = @"commit -m init",
+                            SupressExceptionOnNonZeroExitCode = true
+                        }.RunCommand();
+                    }
+                    else {
+                        reporter.Output("skipping git commands because .git folder already exists");
+                    }
 
                     reporter.Output("✓ all done");
                 }
