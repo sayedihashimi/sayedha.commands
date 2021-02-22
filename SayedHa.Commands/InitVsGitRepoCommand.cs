@@ -76,19 +76,33 @@ namespace SayedHa.Commands {
                     string gitignorepath = Path.Combine(rootFolder, KnownStrings.GitIgnoreFilename);
                     if (!File.Exists(gitignorepath)) {
                         // download the file
-                        string vsGitignoreUrl = KnownStrings.GitIgnoreUrl;
+                        reporter.Output("adding .gitignore");
                         var wc = new System.Net.WebClient();
                         try {
-                            wc.DownloadFile(vsGitignoreUrl, gitignorepath);
+                            wc.DownloadFile(KnownStrings.GitIgnoreUrl, gitignorepath);
                         }
                         catch(Exception ex) {
-                            reporter.Error($"unable to download .gitignore from {vsGitignoreUrl}. Error: {ex.ToString()}");
+                            reporter.Error($"unable to download .gitignore from {KnownStrings.GitIgnoreUrl}. Error: {ex.ToString()}");
+                        }
+                    }
+
+                    // add the license file
+                    string licensefilepath = Path.Combine(rootFolder, KnownStrings.LicenseFilename);
+                    if (!File.Exists(licensefilepath)) {
+                        // download the file
+                        reporter.Output("adding license");
+                        var wc = new System.Net.WebClient();
+                        try {
+                            wc.DownloadFile(KnownStrings.LicenseUrl, licensefilepath);
+                        }
+                        catch(Exception ex) {
+                            reporter.Error($"unable to download license file from {KnownStrings.LicenseUrl}. Error: {ex.ToString()}");
                         }
                     }
 
                     // git add .
                     string gitfolderpath = Path.Combine(rootFolder, ".git");
-                    reporter.Output("adding files");
+                    reporter.Output("calling git add");
                     await new CliCommand {
                         Command = "git",
                         Arguments = "add .",
