@@ -72,26 +72,35 @@ namespace SayedHa.Commands {
                         reporter.Output("skipping .gitattributes because it already exists");
                     }
 
+                    // need to add the .gitignore file
+                    string gitignorepath = Path.Combine(rootFolder, KnownStrings.GitIgnoreFilename);
+                    if (!File.Exists(gitignorepath)) {
+                        // download the file
+                        string vsGitignoreUrl = KnownStrings.GitIgnoreUrl;
+                        var wc = new System.Net.WebClient();
+                        try {
+                            wc.DownloadFile(vsGitignoreUrl, gitignorepath);
+                        }
+                        catch(Exception ex) {
+                            reporter.Error($"unable to download .gitignore from {vsGitignoreUrl}. Error: {ex.ToString()}");
+                        }
+                    }
+
                     // git add .
                     string gitfolderpath = Path.Combine(rootFolder, ".git");
-                    if (!Directory.Exists(gitfolderpath)) {
-                        reporter.Output("adding files");
-                        await new CliCommand {
-                            Command = "git",
-                            Arguments = "add .",
-                            SupressExceptionOnNonZeroExitCode = true
-                        }.RunCommand();
+                    reporter.Output("adding files");
+                    await new CliCommand {
+                        Command = "git",
+                        Arguments = "add .",
+                        SupressExceptionOnNonZeroExitCode = true
+                    }.RunCommand();
 
-                        reporter.Output("creating initial commit");
-                        await new CliCommand {
-                            Command = "git",
-                            Arguments = @"commit -m init",
-                            SupressExceptionOnNonZeroExitCode = true
-                        }.RunCommand();
-                    }
-                    else {
-                        reporter.Output("skipping git commands because .git folder already exists");
-                    }
+                    reporter.Output("creating initial commit");
+                    await new CliCommand {
+                        Command = "git",
+                        Arguments = @"commit -m init",
+                        SupressExceptionOnNonZeroExitCode = true
+                    }.RunCommand();
 
                     reporter.Output("✓ all done");
                 }
