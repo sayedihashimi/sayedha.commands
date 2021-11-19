@@ -7,7 +7,7 @@ using LibGit2Sharp;
 
 namespace SayedHa.Commands.Shared {
     public class GitHelper {
-        protected string _gitRemoteGithubPattern = @"git@github\.com\:([^\/]*)\/(.*)\.git";
+        protected string _gitRemoteGithubPattern = @"^(https:\/\/|git@github.com:)(.*)\.git$";
         protected string _repoUrlPattern = @"([^\/]*)\/([^\/]*)$";
 
         public IList<(string name, string pushUrl)> GetRemotes(string repopath) {
@@ -54,6 +54,10 @@ namespace SayedHa.Commands.Shared {
                 if (match != null && match.Groups?.Count > 0) {
                     var accountName = match?.Groups?[1]?.Value;
                     var repoName = match?.Groups[2]?.Value;
+                    if(!string.IsNullOrEmpty(repoName) && !repoName.StartsWith("github.com")) {
+                        repoName = $"github.com/{repoName}";
+                    }
+                    return $"https://{repoName}";
                     return $"https://github.com/{accountName}/{repoName}";
                 }
             }

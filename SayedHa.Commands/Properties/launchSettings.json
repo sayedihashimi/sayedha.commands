@@ -2,8 +2,8 @@
   "profiles": {
     "SayedHa.Commands": {
       "commandName": "Project",
-      "commandLineArgs": "clonerepo ligershark/template-builder",
-      "workingDirectory": "C:\\temp\\dev-work\\01"
+      "commandLineArgs": "og",
+      "workingDirectory": "C:\\data\\mycode\\telemetry-queries"
     }
   }
 }

@@ -8,7 +8,6 @@ using System.Diagnostics;
 
 namespace SayedHa.Commands {
     public class OpenGithubCommand : BaseCommandLineApplication {
-        protected string _gitRemoteGithubPattern = @"git@github\.com\:([^\/]*)\/(.*)\.git";
         protected IUrlHelper _urlHelper;
         public OpenGithubCommand(IUrlHelper urlHeper) : base(
             "og",
