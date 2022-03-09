@@ -56,6 +56,7 @@ namespace SayedHa.Commands {
             
             app.Commands.Add(new LoremIpsumCommand());
 
+            app.Commands.Add(new CalendarCommand());
             // macOS specific commands
             if (IsRunningOnMacOs()) {
                 app.Commands.Add(new RestartTouchbarCommand());

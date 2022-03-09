@@ -2,7 +2,7 @@
   "profiles": {
     "SayedHa.Commands": {
       "commandName": "Project",
-      "commandLineArgs": "og",
+      "commandLineArgs": "cal",
       "workingDirectory": "C:\\data\\mycode\\telemetry-queries"
     }
   }
