@@ -23,7 +23,6 @@ namespace SayedHa.Commands {
                 byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);
                 string base64 = Convert.ToBase64String(encBytes);
                 Console.WriteLine(base64);
-                //Console.WriteLine("TODO: Needs to be encrypted");
             });
         }
     }
