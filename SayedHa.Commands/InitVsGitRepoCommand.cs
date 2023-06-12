@@ -91,13 +91,14 @@ namespace SayedHa.Commands {
                     if (!File.Exists(licensefilepath)) {
                         // download the file
                         reporter.Output("adding license");
-                        var wc = new System.Net.WebClient();
-                        try {
-                            wc.DownloadFile(KnownStrings.LicenseUrl, licensefilepath);
-                        }
-                        catch(Exception ex) {
-                            reporter.Error($"unable to download license file from {KnownStrings.LicenseUrl}. Error: {ex.ToString()}");
-                        }
+                        //var wc = new System.Net.WebClient();
+                        //try {
+                        //    wc.DownloadFile(KnownStrings.ApacheLicenseUrl, licensefilepath);
+                        //}
+                        //catch(Exception ex) {
+                        //    reporter.Error($"unable to download license file from {KnownStrings.ApacheLicenseUrl}. Error: {ex.ToString()}");
+                        //}
+                        File.WriteAllText(licensefilepath, KnownStrings.GetLicenseText());
                     }
 
                     // git add .
