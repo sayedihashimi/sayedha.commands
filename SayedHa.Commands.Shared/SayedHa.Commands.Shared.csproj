@@ -1,9 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
@@ -16,7 +14,7 @@
   <ItemGroup>
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.3.4" />
     <PackageReference Include="LibGit2Sharp" Version="0.26.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0-preview7.19362.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
