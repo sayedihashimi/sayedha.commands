@@ -18,9 +18,9 @@ steps:
 - task: NuGetToolInstaller@1
 
 - task: DotNetCoreInstaller@0
-  displayName: 'Install .net core 3.0 (preview)'
+  displayName: 'Install .net 7'
   inputs:
-    version: '3.0.100-preview8-013656'
+    version: '7.x.x'
 
 - task: NuGetCommand@2
   inputs:
