@@ -18,9 +18,9 @@ steps:
 - task: NuGetToolInstaller@1
 
 - task: DotNetCoreInstaller@0
-  displayName: 'Install .net core 3.0 (preview)'
+  displayName: 'Install .net 7'
   inputs:
-    version: '3.0.100-preview8-013656'
+    version: '7.0.304'
 
 - task: NuGetCommand@2
   inputs:
@@ -37,6 +37,12 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    testSelector: 'testAssemblies'
+    testAssemblyVer2: |
+      **\SayedHa*test.dll
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    # ------------  Use the version installed by installer -----------
+    vsTestVersion: 'toolsInstaller'
 
 - task: DotNetCoreCLI@2
   inputs:

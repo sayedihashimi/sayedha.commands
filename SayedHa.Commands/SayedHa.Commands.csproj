@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
-        <LangVersion>8.0</LangVersion>
-        
-        <!-- nuget related properties -->
-        <Authors>Sayed Ibrahim Hashimi</Authors>
-        <Description>.NET Core global tool with some useful commands.</Description>
-        <Version>1.0.7</Version>
-        <Copyright>Copyright 2019 © Sayed Ibrahim Hashimi. All rights reserved.</Copyright>
-        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-        <PackageProjectUrl>https://github.com/sayedihashimi/sayedha.commands</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/sayedihashimi/sayedha.commands</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageType>DotNetCliTool</PackageType>
-        <!-- global tool related properties -->
-        
-        <PackAsTool>true</PackAsTool>
-        <ToolCommandName>sayedha</ToolCommandName>
-        <PackageOutputPath>./nupkg</PackageOutputPath>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.3.4" />
-        <PackageReference Include="Spectre.Console" Version="0.43.0" />
-        <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="7.0.1" />
-        <PackageReference Include="TextCopy" Version="1.5.2" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0-preview7.19362.4" />
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\SayedHa.Commands.Shared\SayedHa.Commands.Shared.csproj" />
-    </ItemGroup>
-    
-    <Target Name="InstallTool" DependsOnTargets="Pack">
-        <Exec Command="dotnet tool uninstall --global $(MSBuildProjectName)" IgnoreExitCode="true" />
-        <Exec Command="dotnet tool install --global --add-source $(PackageOutputPath) $(MSBuildProjectName)" />
-        <Exec Command="$(ToolCommandName) --help" />
-    </Target>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <!-- nuget related properties -->
+    <Authors>Sayed Ibrahim Hashimi</Authors>
+    <Description>.NET Core global tool with some useful commands.</Description>
+    <Version>1.0.7</Version>
+    <Copyright>Copyright 2019 © Sayed Ibrahim Hashimi. All rights reserved.</Copyright>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/sayedihashimi/sayedha.commands</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sayedihashimi/sayedha.commands</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageType>DotNetCliTool</PackageType>
+    <!-- global tool related properties -->
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>sayedha</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="nupkg\**" />
+    <EmbeddedResource Remove="nupkg\**" />
+    <None Remove="nupkg\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.3.4" />
+    <PackageReference Include="Spectre.Console" Version="0.43.0" />
+    <PackageReference Include="TextCopy" Version="1.5.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="7.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SayedHa.Commands.Shared\SayedHa.Commands.Shared.csproj" />
+  </ItemGroup>
+  <Target Name="InstallTool" DependsOnTargets="Pack">
+    <Exec Command="dotnet tool uninstall --global $(MSBuildProjectName)" IgnoreExitCode="true" />
+    <Exec Command="dotnet tool install --global --add-source $(PackageOutputPath) $(MSBuildProjectName)" />
+    <Exec Command="$(ToolCommandName) --help" />
+  </Target>
 </Project>
