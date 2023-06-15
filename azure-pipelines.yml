@@ -20,7 +20,7 @@ steps:
 - task: DotNetCoreInstaller@0
   displayName: 'Install .net 7'
   inputs:
-    version: '7.x.x'
+    version: '7.0.304'
 
 - task: NuGetCommand@2
   inputs:
