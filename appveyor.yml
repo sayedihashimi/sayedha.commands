@@ -6,6 +6,7 @@ init:
 - pwsh: if(test-path -LiteralPath ./ci.build.init.ps1){. ./ci.build.init.ps1}
 
 before_build:
+  - choco install dotnet-sdk --version 8.0.100
   - dotnet restore
 
 build:
