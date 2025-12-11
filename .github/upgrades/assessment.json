@@ -1,0 +1,969 @@
+{
+  "settings": {
+    "components": {
+      "code": false,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2025-12-11T05:27:34.6034739Z",
+  "analysisEndTime": "2025-12-11T05:27:37.8477754Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 3,
+      "issues": 5,
+      "incidents": 31,
+      "effort": 31
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 3,
+        "Optional": 1,
+        "Potential": 27,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 4,
+        "Project": 3,
+        "Api": 24
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "SayedHa.Commands\\SayedHa.Commands.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 16,
+      "properties": {
+        "appName": "SayedHa.Commands",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net8.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 17,
+        "numberOfCodeFiles": 17,
+        "linesTotal": 1107,
+        "linesOfCode": 1107,
+        "totalApiScanned": 1939,
+        "minLinesOfCodeToChange": 13,
+        "maxLinesOfCodeToChange": 13
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "a9f78a0e-65d1-4928-8624-bfb0b2b67c58",
+          "ruleId": "NuGet.0002",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.1",
+              "protected": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.1"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\SayedHa.Commands.csproj",
+            "snippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.1",
+            "protectedSnippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.1",
+            "label": "Microsoft.Extensions.DependencyInjection 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.DependencyInjection",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.1",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "61538556-528d-4045-9b41-c9ae901fa191",
+          "ruleId": "NuGet.0002",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "System.Security.Cryptography.ProtectedData, 8.0.0\n\nRecommendation:\n\nRemove System.Security.Cryptography.ProtectedData, and replace with new package System.Security.Cryptography.ProtectedData 10.0.1",
+              "protected": "System.Security.Cryptography.ProtectedData, 8.0.0\n\nRecommendation:\n\nRemove System.Security.Cryptography.ProtectedData, and replace with new package System.Security.Cryptography.ProtectedData 10.0.1"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\SayedHa.Commands.csproj",
+            "snippet": "System.Security.Cryptography.ProtectedData, 8.0.0\n\nRecommendation:\n\nRemove System.Security.Cryptography.ProtectedData, and replace with new package System.Security.Cryptography.ProtectedData 10.0.1",
+            "protectedSnippet": "System.Security.Cryptography.ProtectedData, 8.0.0\n\nRecommendation:\n\nRemove System.Security.Cryptography.ProtectedData, and replace with new package System.Security.Cryptography.ProtectedData 10.0.1",
+            "label": "System.Security.Cryptography.ProtectedData 8.0.0",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.1",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "9568dae8-c41e-4336-8008-a3b7832cbfd7",
+          "ruleId": "Project.0002",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net8.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\SayedHa.Commands.csproj",
+            "snippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "5b33a14e-873f-415b-8292-052eaa7d49d3",
+          "ruleId": "Api.0003",
+          "description": "Breaking change - Streaming HTTP responses enabled by default in browser HTTP clients ",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var result = await response.Content.ReadAsStringAsync();",
+              "protected": "T:System.Net.Http.HttpContent"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\LoremIpsumCommand.cs",
+            "snippet": "var result = await response.Content.ReadAsStringAsync();",
+            "protectedSnippet": "T:System.Net.Http.HttpContent",
+            "label": "T:System.Net.Http.HttpContent",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/default-http-streaming.md",
+                "isCustom": false
+              }
+            ],
+            "line": 79,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "48761f34-1166-4d58-9936-6a712b2d7369",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "T:System.Security.Cryptography.DataProtectionScope"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "T:System.Security.Cryptography.DataProtectionScope",
+            "label": "T:System.Security.Cryptography.DataProtectionScope",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "c308ea8b-57d4-43d3-a2d0-e79f77daf833",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "T:System.Security.Cryptography.DataProtectionScope"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "T:System.Security.Cryptography.DataProtectionScope",
+            "label": "T:System.Security.Cryptography.DataProtectionScope",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "86c8cb51-4637-49b7-8f30-cbad39de3b10",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "F:System.Security.Cryptography.DataProtectionScope.CurrentUser"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "F:System.Security.Cryptography.DataProtectionScope.CurrentUser",
+            "label": "F:System.Security.Cryptography.DataProtectionScope.CurrentUser",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "2effa749-7504-4917-b820-1a50f9057411",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "T:System.Security.Cryptography.ProtectedData"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "T:System.Security.Cryptography.ProtectedData",
+            "label": "T:System.Security.Cryptography.ProtectedData",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "851b1d19-b61d-4f75-bee0-ea16de21b80c",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "M:System.Security.Cryptography.ProtectedData.Protect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "M:System.Security.Cryptography.ProtectedData.Protect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)",
+            "label": "M:System.Security.Cryptography.ProtectedData.Protect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "369d6617-6010-4684-bdae-7bc00be0c1d3",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "T:System.Security.Cryptography.DataProtectionScope"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "T:System.Security.Cryptography.DataProtectionScope",
+            "label": "T:System.Security.Cryptography.DataProtectionScope",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "06e58aa2-0100-44da-bc5c-b91154c4470a",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "T:System.Security.Cryptography.DataProtectionScope"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "T:System.Security.Cryptography.DataProtectionScope",
+            "label": "T:System.Security.Cryptography.DataProtectionScope",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "1fae19e4-0a8c-48da-8d44-b051cb739589",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "F:System.Security.Cryptography.DataProtectionScope.CurrentUser"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "F:System.Security.Cryptography.DataProtectionScope.CurrentUser",
+            "label": "F:System.Security.Cryptography.DataProtectionScope.CurrentUser",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "d39db118-9df0-4cad-b22d-be29dbdfd846",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "T:System.Security.Cryptography.ProtectedData"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "T:System.Security.Cryptography.ProtectedData",
+            "label": "T:System.Security.Cryptography.ProtectedData",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "6581a31c-8384-429e-9ea4-8528adef7e60",
+          "ruleId": "Api.0002",
+          "description": "API is available in package System.Security.Cryptography.ProtectedData, 8.0.0. Add package reference to System.Security.Cryptography.ProtectedData, 8.0.0",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+              "protected": "M:System.Security.Cryptography.ProtectedData.Protect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\EncryptCommand.cs",
+            "snippet": "byte[] encBytes = ProtectedData.Protect(Encoding.Unicode.GetBytes(valueToEncrypt.Value), optionalEntropy: null, scope: DataProtectionScope.CurrentUser);",
+            "protectedSnippet": "M:System.Security.Cryptography.ProtectedData.Protect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)",
+            "label": "M:System.Security.Cryptography.ProtectedData.Protect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)",
+            "properties": {
+              "PackageId": "System.Security.Cryptography.ProtectedData",
+              "PackageNewVersion": "8.0.0"
+            },
+            "line": 22,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "4ed4b709-63c6-4965-8093-a89c084e2b85",
+          "ruleId": "Api.0002",
+          "description": "WebRequest, HttpWebRequest, ServicePoint, and WebClient are obsolete. Use HttpClient instead. ",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var wc = new System.Net.WebClient();",
+              "protected": "M:System.Net.WebClient.#ctor"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\InitVsGitRepoCommand.cs",
+            "snippet": "var wc = new System.Net.WebClient();",
+            "protectedSnippet": "M:System.Net.WebClient.#ctor",
+            "label": "M:System.Net.WebClient.#ctor",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0014",
+                "isCustom": false
+              }
+            ],
+            "line": 79,
+            "column": 24
+          }
+        },
+        {
+          "incidentId": "baa3f647-aab3-4e8a-b65a-bd0fa14c852d",
+          "ruleId": "Api.0002",
+          "description": "WebRequest, HttpWebRequest, ServicePoint, and WebClient are obsolete. Use HttpClient instead. ",
+          "projectPath": "SayedHa.Commands\\SayedHa.Commands.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "var wc = new System.Net.WebClient();",
+              "protected": "M:System.Net.WebClient.#ctor"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands\\InitVsGitRepoCommand.cs",
+            "snippet": "var wc = new System.Net.WebClient();",
+            "protectedSnippet": "M:System.Net.WebClient.#ctor",
+            "label": "M:System.Net.WebClient.#ctor",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0014",
+                "isCustom": false
+              }
+            ],
+            "line": 79,
+            "column": 24
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 14,
+      "properties": {
+        "appName": "SayedHa.Commands.Shared",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net8.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 24,
+        "numberOfCodeFiles": 24,
+        "linesTotal": 852,
+        "linesOfCode": 852,
+        "totalApiScanned": 1042,
+        "minLinesOfCodeToChange": 11,
+        "maxLinesOfCodeToChange": 11
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "ac70a74b-0819-4608-b760-548811bdf4d5",
+          "ruleId": "NuGet.0002",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.1",
+              "protected": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.1"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+            "snippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.1",
+            "protectedSnippet": "Microsoft.Extensions.DependencyInjection, 8.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection, and replace with new package Microsoft.Extensions.DependencyInjection 10.0.1",
+            "label": "Microsoft.Extensions.DependencyInjection 8.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.DependencyInjection",
+              "PackageVersion": "8.0.0",
+              "PackageNewVersion": "10.0.1",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "f6734090-bea6-4741-b0ad-918b7d746fe8",
+          "ruleId": "NuGet.0005",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "LibGit2Sharp, 0.26.0\n\nRecommendation:\n\nhttps://github.com/libgit2/libgit2/security/advisories/GHSA-j2v7-4f6v-gpg8\nRemove LibGit2Sharp, and replace with new package LibGit2Sharp, 0.31.0",
+              "protected": "LibGit2Sharp, 0.26.0\n\nRecommendation:\n\nhttps://github.com/libgit2/libgit2/security/advisories/GHSA-j2v7-4f6v-gpg8\nRemove LibGit2Sharp, and replace with new package LibGit2Sharp, 0.31.0"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+            "snippet": "LibGit2Sharp, 0.26.0\n\nRecommendation:\n\nhttps://github.com/libgit2/libgit2/security/advisories/GHSA-j2v7-4f6v-gpg8\nRemove LibGit2Sharp, and replace with new package LibGit2Sharp, 0.31.0",
+            "protectedSnippet": "LibGit2Sharp, 0.26.0\n\nRecommendation:\n\nhttps://github.com/libgit2/libgit2/security/advisories/GHSA-j2v7-4f6v-gpg8\nRemove LibGit2Sharp, and replace with new package LibGit2Sharp, 0.31.0",
+            "label": "LibGit2Sharp 0.26.0",
+            "properties": {
+              "PackageId": "LibGit2Sharp",
+              "PackageVersion": "0.26.0",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "df642d31-a79d-4ee0-9a90-1ced0cb87910",
+          "ruleId": "Project.0002",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net8.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+            "snippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "f9f0f7cd-3d8d-40e9-af55-b91b8f4c9ba1",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\Extensions\\FileExistsException.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 146
+          }
+        },
+        {
+          "incidentId": "31c64ef7-da3e-4207-adce-dbbbfb34656a",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\Extensions\\FileExistsException.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 146
+          }
+        },
+        {
+          "incidentId": "c02b160a-e4b1-4a78-8d4f-2f398566cd98",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\FolderAlreadyExistsException.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 155
+          }
+        },
+        {
+          "incidentId": "4aaa01b5-f219-4023-b224-f53fca6a9704",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\FolderAlreadyExistsException.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 155
+          }
+        },
+        {
+          "incidentId": "295c1e6a-72bd-4316-ba2f-319dade17662",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\RecursionLimitReachedException.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 157
+          }
+        },
+        {
+          "incidentId": "5d7bba6b-07f5-4be1-b562-65dc570f9c81",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\RecursionLimitReachedException.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 157
+          }
+        },
+        {
+          "incidentId": "620e85a7-1217-4ac3-8ecb-90e6f2dad6a3",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\MissingParameterException.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 152
+          }
+        },
+        {
+          "incidentId": "f53154c1-be01-4706-8e61-e32a254d0659",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\MissingParameterException.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 152
+          }
+        },
+        {
+          "incidentId": "7072c6e2-8e97-4b71-990c-e73a37727e3b",
+          "ruleId": "Api.0002",
+          "description": "WebRequest, HttpWebRequest, ServicePoint, and WebClient are obsolete. Use HttpClient instead. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "using var client = new WebClient();",
+              "protected": "M:System.Net.WebClient.#ctor"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\WebHelper.cs",
+            "snippet": "using var client = new WebClient();",
+            "protectedSnippet": "M:System.Net.WebClient.#ctor",
+            "label": "M:System.Net.WebClient.#ctor",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0014",
+                "isCustom": false
+              }
+            ],
+            "line": 14,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "27de05f6-da5c-4920-bba1-a26a64686d24",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\CliCommandReturnedNonZeroExitCode.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 169
+          }
+        },
+        {
+          "incidentId": "7e8494c3-1b9b-4484-b173-48b0ceda9118",
+          "ruleId": "Api.0002",
+          "description": "This API supports obsolete formatter-based serialization. It should not be called or extended by application code. ",
+          "projectPath": "SayedHa.Commands.Shared\\SayedHa.Commands.Shared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": ": base(info, context)",
+              "protected": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Shared\\CliCommandReturnedNonZeroExitCode.cs",
+            "snippet": ": base(info, context)",
+            "protectedSnippet": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "label": "M:System.Exception.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://aka.ms/dotnet-warnings/SYSLIB0051",
+                "isCustom": false
+              }
+            ],
+            "line": 31,
+            "column": 169
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "SayedHa.Commands.Test\\SayedHa.Commands.Test.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "SayedHa.Commands.Test",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net8.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 4,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 245,
+        "linesOfCode": 245,
+        "totalApiScanned": 239,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "dd7135e5-9ab7-4220-afdf-d408f6b6575c",
+          "ruleId": "Project.0002",
+          "projectPath": "SayedHa.Commands.Test\\SayedHa.Commands.Test.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net8.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net8.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "SayedHa.Commands.Test\\SayedHa.Commands.Test.csproj",
+            "snippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net8.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net8.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0005": {
+      "id": "NuGet.0005",
+      "isFeature": false,
+      "description": "NuGet package is deprecated.\n\nGo to its documentation and if there is a guidance for replacement of functionality provided by this package.",
+      "label": "NuGet package is deprecated",
+      "severity": "Optional",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262531",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0002": {
+      "id": "Api.0002",
+      "isFeature": false,
+      "description": "API is source incompatible for selected .NET version: requires code changes to compile successfully when targeting a new version, such as removing obsolete APIs or changing method signatures.",
+      "label": "Source incompatible for selected .NET version",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Breaking changes in .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0003": {
+      "id": "Api.0003",
+      "isFeature": false,
+      "description": "API has a behavioral change in selected .NET version: code and binaries may behave differently at runtime without needing recompilation, but the new behavior might be undesirable and require updates.",
+      "label": "Behavioral change in selected .NET version",
+      "severity": "Potential",
+      "effort": 1
+    }
+  }
+}
