@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  packages: write
 
 jobs:
   build:
@@ -51,3 +52,20 @@ jobs:
 
       - name: Run tests
         run: dotnet test SayedHa.Commands.sln --configuration Release --no-build --verbosity normal
+
+      - name: Update version with commit ID suffix
+        if: github.ref != 'refs/heads/publish'
+        run: |
+          COMMIT_ID=$(git rev-parse --short HEAD)
+          echo "Commit ID: $COMMIT_ID"
+          sed -i "s/<Version>\([^<]*\)<\/Version>/<Version>\1-$COMMIT_ID<\/Version>/" SayedHa.Commands/SayedHa.Commands.csproj
+          echo "Updated version in csproj:"
+          grep "<Version>" SayedHa.Commands/SayedHa.Commands.csproj
+
+      - name: Pack NuGet package
+        run: dotnet pack SayedHa.Commands/SayedHa.Commands.csproj --configuration Release --no-build --output ./nupkg
+
+      - name: Publish to GitHub Packages
+        run: dotnet nuget push ./nupkg/*.nupkg --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+        env:
+          DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER: 0
