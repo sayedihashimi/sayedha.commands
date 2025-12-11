@@ -10,39 +10,38 @@ This document tracks the execution of the SayedHa.Commands solution upgrade from
 
 ## Tasks
 
-### [▶] TASK-001: Verify prerequisites
-**References**: Plan §2 Phase 0
+### [ ] TASK-001: Verify prerequisites
+**References**: Plan §Phase 0
 
-- [✓] (1) Verify .NET 10 SDK installed and available
-- [▶] (2) .NET 10 SDK version meets minimum requirements (**Verify**)
-- [ ] (3) Check global.json compatibility (if present in repository)
-- [ ] (4) global.json compatible with .NET 10 SDK or updated (**Verify**)
+- [ ] (1) Verify .NET 10 SDK installed
+- [ ] (2) .NET 10 SDK version meets minimum requirements (**Verify**)
+- [ ] (3) Check global.json compatibility (if present)
+- [ ] (4) global.json compatible with .NET 10 SDK (**Verify**)
 
 ---
 
-### [ ] TASK-002: Atomic framework and dependency upgrade with compilation fixes
-**References**: Plan §4 Project-by-Project Plans, Plan §5 Package Update Reference, Plan §6 Breaking Changes Catalog
+### [ ] TASK-002: Atomic framework and package upgrade with compilation fixes
+**References**: Plan §Phase 1, Plan §Package Update Reference, Plan §Breaking Changes Catalog
 
-- [ ] (1) Update TargetFramework to `net10.0` in all 3 projects per Plan §4 (SayedHa.Commands.Shared, SayedHa.Commands, SayedHa.Commands.Test)
-- [ ] (2) All project files updated to `net10.0` (**Verify**)
-- [ ] (3) Update package references per Plan §5: Microsoft.Extensions.DependencyInjection 8.0.0 → 10.0.1 (SayedHa.Commands.Shared, SayedHa.Commands); System.Security.Cryptography.ProtectedData 8.0.0 → 10.0.1 (SayedHa.Commands); replace or remove deprecated LibGit2Sharp 0.26.0 (SayedHa.Commands.Shared)
-- [ ] (4) All package references updated per specification (**Verify**)
-- [ ] (5) Restore all dependencies across solution
+- [ ] (1) Update TargetFramework to net10.0 in all 3 projects (SayedHa.Commands.Shared, SayedHa.Commands, SayedHa.Commands.Test)
+- [ ] (2) All project TargetFramework values updated to net10.0 (**Verify**)
+- [ ] (3) Update package references per Plan §Package Update Reference (Microsoft.Extensions.DependencyInjection 8.0.0 → 10.0.1 in Commands and Shared; System.Security.Cryptography.ProtectedData 8.0.0 → 10.0.1 in Commands; replace/remove deprecated LibGit2Sharp 0.26.0 in Shared)
+- [ ] (4) All package references updated (**Verify**)
+- [ ] (5) Restore all dependencies
 - [ ] (6) All dependencies restored successfully (**Verify**)
-- [ ] (7) Build solution and fix all compilation errors per Plan §6 Breaking Changes Catalog (serialization constructors, DataProtectionScope/ProtectedData API changes, WebClient replacement with HttpClient, HttpContent behavioral changes)
+- [ ] (7) Build solution and fix compilation errors per Plan §Breaking Changes Catalog (focus: serialization constructor usage, DataProtectionScope/ProtectedData API changes, WebClient replacement with HttpClient, HttpContent behavioral changes)
 - [ ] (8) Solution builds with 0 errors (**Verify**)
-- [ ] (9) Commit changes with message: "TASK-002: Upgrade to .NET 10.0 - atomic framework and dependency update"
+- [ ] (9) Commit changes with message: "TASK-002: Upgrade to .NET 10.0 - update frameworks, packages, and fix compilation errors"
 
 ---
 
 ### [ ] TASK-003: Run test suite and validate upgrade
-**References**: Plan §4 SayedHa.Commands.Test, Plan §7 Testing & Validation Strategy
+**References**: Plan §Phase 2, Plan §Success Criteria
 
-- [ ] (1) Run all tests in SayedHa.Commands.Test project
-- [ ] (2) Fix any test failures related to framework upgrade (reference Plan §6 for breaking changes: serialization, data protection, HTTP changes)
+- [ ] (1) Run tests in SayedHa.Commands.Test project
+- [ ] (2) Fix any test failures related to API changes (reference Plan §Breaking Changes Catalog for serialization, data protection, HTTP changes)
 - [ ] (3) Re-run tests after fixes
 - [ ] (4) All tests pass with 0 failures (**Verify**)
 - [ ] (5) Commit test fixes with message: "TASK-003: Complete .NET 10.0 upgrade testing and validation"
 
 ---
-
