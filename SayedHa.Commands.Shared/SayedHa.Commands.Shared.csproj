@@ -13,11 +13,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.3.4" />
-    <!-- LibGit2Sharp deprecated: removed per plan -->
+    <PackageReference Include="LibGit2Sharp" Version="0.30.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Extensions\" />
+    <Folder Include="Extensions" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Properties\PublishProfiles\FolderProfile.pubxml" />

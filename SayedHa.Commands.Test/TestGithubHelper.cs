@@ -1,5 +1,4 @@
 ﻿using System;
-using LibGit2Sharp;
 using SayedHa.Commands.Shared;
 using Xunit;
 
