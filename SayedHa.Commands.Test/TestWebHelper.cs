@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using SayedHa.Commands.Shared;
 using Xunit;
@@ -26,9 +27,9 @@ namespace SayedHa.Commands.Test {
 
             if (File.Exists(destFile)) File.Delete(destFile);
 
-            var ex = await Assert.ThrowsAsync<WebException>(() => new WebHelper().DownloadFile(url, destFile, true));
+            var ex = await Assert.ThrowsAsync<HttpRequestException>(() => new WebHelper().DownloadFile(url, destFile, true));
 
-            Assert.Equal(WebExceptionStatus.ProtocolError, ex.Status);
+            Assert.Contains("404", ex.Message);
         }
     }
 }
