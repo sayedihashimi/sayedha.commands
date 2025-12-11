@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.Versioning;
 using System.Threading.Tasks;
 
 namespace SayedHa.Commands.Shared {
@@ -32,7 +33,9 @@ namespace SayedHa.Commands.Shared {
                 startInfo.UserName = Username;
             }
             if (!string.IsNullOrWhiteSpace(Password)) {
+#if WINDOWS
                 startInfo.PasswordInClearText = Password;
+#endif
             }
 
             string stdout = null;

@@ -23,13 +23,5 @@ namespace SayedHa.Commands.Shared.Exceptions{
         /// <param name="inner">The exception that is the cause of the current exception. </param>
         public FolderAlreadyExistsException(string message, System.Exception inner) : base(message, inner) {
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:FolderAlreadyExistsException"/> class
-        /// </summary>
-        /// <param name="context">The contextual information about the source or destination.</param>
-        /// <param name="info">The object that holds the serialized object data.</param>
-        protected FolderAlreadyExistsException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context) {
-        }
     }
 }

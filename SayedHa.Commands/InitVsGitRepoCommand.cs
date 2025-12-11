@@ -72,20 +72,6 @@ namespace SayedHa.Commands {
                         reporter.Output("skipping .gitattributes because it already exists");
                     }
 
-                    // need to add the .gitignore file
-                    string gitignorepath = Path.Combine(rootFolder, KnownStrings.GitIgnoreFilename);
-                    if (!File.Exists(gitignorepath)) {
-                        // download the file
-                        reporter.Output("adding .gitignore");
-                        var wc = new System.Net.WebClient();
-                        try {
-                            wc.DownloadFile(KnownStrings.GitIgnoreUrl, gitignorepath);
-                        }
-                        catch(Exception ex) {
-                            reporter.Error($"unable to download .gitignore from {KnownStrings.GitIgnoreUrl}. Error: {ex.ToString()}");
-                        }
-                    }
-
                     // add the license file
                     string licensefilepath = Path.Combine(rootFolder, KnownStrings.LicenseFilename);
                     if (!File.Exists(licensefilepath)) {

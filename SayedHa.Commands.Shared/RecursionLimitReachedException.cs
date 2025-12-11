@@ -23,13 +23,5 @@ namespace SayedHa.Commands.Shared.Exceptions {
         /// <param name="inner">The exception that is the cause of the current exception. </param>
         public RecursionLimitReachedException(string message, System.Exception inner) : base(message, inner) {
         }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:RecursionLimitReachedException"/> class
-        /// </summary>
-        /// <param name="context">The contextual information about the source or destination.</param>
-        /// <param name="info">The object that holds the serialized object data.</param>
-        protected RecursionLimitReachedException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) : base(info, context) {
-        }
     }
 }
